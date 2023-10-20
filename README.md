@@ -68,3 +68,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+
+
+
+// TO SAY LIST (& TO DO):
+- icon change in title  (favicon.ico and logo for website)
+- how to change title and add meta data (index.html file)
+- change content of meta data to match the app
+- react single page application and component linking
+
+
+-- loaders(import library and pick a style)
