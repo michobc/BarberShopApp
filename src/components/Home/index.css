@@ -1,3 +1,14 @@
-*{
-    background-color:blue;
+.post-class{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7%;
+    margin-top: 50px;
+}
+
+body{
+    background-image: url("https://png.pngtree.com/background/20230612/original/pngtree-barbershop-with-chairs-in-traditional-styles-and-mirrors-in-front-picture-image_3372710.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
