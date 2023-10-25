@@ -1,14 +1,38 @@
-.post-class{
-    display:flex;
-    align-items: center;
+.intro-logo{
+    display: flex;
     justify-content: center;
-    gap: 7%;
-    margin-top: 50px;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.container{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 100px;
 }
 
 body{
-    background-image: url("https://png.pngtree.com/background/20230612/original/pngtree-barbershop-with-chairs-in-traditional-styles-and-mirrors-in-front-picture-image_3372710.jpg");
+    background-image: url("https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?cs=srgb&dl=pexels-thgusstavo-santana-1813272.jpg&fm=jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+}
+
+img {
+    border-radius: 40%;
+    width: 35%;
+}
+
+h1{
+    font-size: 240%;
+    color: rgb(255, 255, 255);
+    font-style: italic;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-shadow: 3px 3px 5px rgb(0, 0, 0);
 }

@@ -180,8 +180,8 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: 'black', height: '80px'}}>
-        <Toolbar sx={{ display: 'flex', alignContent: 'center' }}>
+      <AppBar position="static" sx={{ backgroundColor: 'black'}}>
+        <Toolbar>
           <IconButton
             size="large"
             edge="start"

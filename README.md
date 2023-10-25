@@ -76,7 +76,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-// TO SAY LIST (& TO DO):
+// TO DO LIST:
 - icon change in title  (favicon.ico and logo for website)
 - how to change title and add meta data (index.html file)
 - change content of meta data to match the app
