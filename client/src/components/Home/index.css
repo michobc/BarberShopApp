@@ -7,14 +7,19 @@
     margin-top: 100px;
 }
 
+.comp-wrapper{
+    padding: 40px;
+}
+
 .container{
     background-color: white;
+    /* padding: 100px; */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 40px;
 }
 
 body{
@@ -24,7 +29,7 @@ body{
     background-size: cover;
 }
 
-img {
+.intro-logo img {
     border-radius: 40%;
     width: 35%;
 }
@@ -36,3 +41,19 @@ h1{
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     text-shadow: 3px 3px 5px rgb(0, 0, 0);
 }
+
+.button {
+    background-color: red; /* Change the background color */
+    color: white; /* Change the text color */
+    border: none;
+    padding: 15px 25px; /* Adjust padding as needed */
+    font-size: 18px;
+    border-radius: 50px; /* Add rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth hover effect */
+  }
+  
+  .button:hover {
+    background-color: rgb(255, 122, 122); /* Change the background color on hover */
+  }
+  

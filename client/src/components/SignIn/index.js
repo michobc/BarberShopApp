@@ -12,23 +12,47 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+const theme = createTheme();
 
-// TODO remove, this demo shouldn't need to reset the theme.
+const boxStyle = {
+  marginTop: theme.spacing(8),
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: theme.spacing(3),
+  border: `1px solid ${theme.palette.primary.main}`,
+  borderRadius: theme.spacing(1),
+  boxShadow: `0px 0px 5px 0px ${theme.palette.primary.main}`,
+  backgroundColor: theme.palette.background.paper,
+};
 
-const defaultTheme = createTheme();
+
+const closeButtonStyle = {
+  position: 'relative',
+  top: theme.spacing(0),
+  left: theme.spacing(17),
+};
+
+const avatarStyle = {
+  m: 1,
+  bgcolor: 'red',
+};
+
+const formStyle = {
+  width: '100%',
+  marginTop: theme.spacing(1),
+};
+
+const submitButtonStyle = {
+  margin: theme.spacing(3, 0, 2),
+  bgcolor:'red',
+  '&:hover': {
+    bgcolor: 'black',
+  },
+};
 
 export default function SignIn() {
   const handleSubmit = (event) => {
@@ -41,24 +65,22 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <Box sx={boxStyle}>
+
+          <IconButton sx={closeButtonStyle} onClick={() => window.location.href = '/'}>
+            <CloseIcon />
+          </IconButton>
+
+          <Avatar sx={avatarStyle}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
+          <Typography component="h2" variant="h4">
+            Sign In
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={formStyle}>
             <TextField
               margin="normal"
               required
@@ -87,7 +109,8 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              color="primary"
+              sx={submitButtonStyle}
             >
               Sign In
             </Button>
@@ -105,7 +128,6 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

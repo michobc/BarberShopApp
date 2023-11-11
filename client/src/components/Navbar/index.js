@@ -1,27 +1,3 @@
-// import './index.css';
-// import AccountMenu from '../AccountMenu';
-
-// function Navbar() {
-//     return (
-//         <>
-//         <nav className="nav">
-//             <a href="/" className="site-title">BarberShop</a>
-//             <div className='menu-list'>
-//                 <ul>
-//                     <li><a href="">Take Appointment</a></li>
-//                     <li><a href="">How It Works</a></li>
-//                     <li><a href="">About Us</a></li>
-//                     <li><a href="">Sign In</a></li>
-//                 </ul>
-//             </div>
-//         </nav>
-//         </>
-//     );
-// }
-
-// export default Navbar
-
-
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -39,6 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -121,8 +98,8 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => {window.location.href = '/Profile'}}>Profile</MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
     </Menu>
   );
 
@@ -143,27 +120,27 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={0} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
         <p>Messages</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={0} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem onClick={() => {window.location.href = '/Profile'}}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -197,7 +174,7 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            BarberShop
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -210,17 +187,17 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
+            {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={0} color="error">
                 <MailIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={0} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
