@@ -5,6 +5,7 @@ import SignUp from '../SignUp'
 import SignIn from '../SignIn'
 import AboutUs from '../About';
 import Contact from '../Contact'
+import PickUser from '../PickUser';
 
 const user = {
   firstName: 'John',
@@ -26,6 +27,7 @@ function Routing(){
       <Route path='/SignIn' element={<SignIn/>}/>
       <Route path='/About' element={<AboutUs/>}/>
       <Route path='/Contact' element={<Contact/>}/>
+      <Route path='/PickUser' element={<PickUser/>} />
     </Routes>
     </>
   );

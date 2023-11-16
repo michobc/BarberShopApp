@@ -70,7 +70,7 @@ export default function SignIn() {
         <CssBaseline />
         <Box sx={boxStyle}>
 
-          <IconButton sx={closeButtonStyle} onClick={() => window.location.href = '/'}>
+          <IconButton sx={closeButtonStyle} onClick={() => window.location.href = '/SignUp'}>
             <CloseIcon />
           </IconButton>
 

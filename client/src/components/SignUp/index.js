@@ -67,7 +67,7 @@ export default function SignUp() {
             <IconButton sx={{position: 'relative',
                             top: 0,
                             left: '160px',}} 
-                            onClick={() => window.location.href = '/'}>
+                            onClick={() => window.location.href = '/PickUser'}>
               <CloseIcon />
             </IconButton>
 

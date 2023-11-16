@@ -12,7 +12,7 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import PickUser from '../PickUser';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -126,30 +126,34 @@ export default function PrimarySearchAppBar() {
             </Button>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              // color="inherit"
-              onClick={() => {
-                window.location.href = '/PickUser';
-              }}
+          <IconButton
               sx={{
                 color: 'white', // Change the text color
-                backgroundColor: 'red', // Change the background color
                 '&:hover': {
-                  backgroundColor:'lightpink', // Change the hover background color
+                  color: 'red', // Change the hover text color
                 },
-                borderRadius: '20px', // Add rounded corners
-                padding: '8px 20px', // Adjust padding
               }}
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-haspopup="true"
+              onClick={() => {
+                window.location.href = '/Profile';
+              }}
+              color="inherit"
             >
-              Sign Up
-            </Button>
+              <AccountCircle />
+            </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
       <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
         <List>
-          <ListItem button onClick={() => window.location.href = '/SignUp'}>
-            <ListItemText primary="Sign Up" />
+          <ListItem button onClick={() => window.location.href = '/Profile'}>
+            <ListItemText primary="Profile" />
+          </ListItem>
+          <ListItem button onClick={() => window.location.href = '/'}>
+            <ListItemText primary="Dashboard" />
           </ListItem>
           <ListItem button onClick={() => window.location.href = '/Contact'}>
             <ListItemText primary="Contact" />

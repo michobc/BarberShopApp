@@ -1,6 +1,9 @@
 import React from 'react';
 import { useSpring, animated } from 'react-spring';
-import NavBarSign from '../NavBarSign'
+import isAuthenticated from '../../UserAuth';
+import NavBarSign from '../NavBarSign';
+import Navbar from '../Navbar'
+import NavbarBarber from '../NavbarBarber'
 import HowItWorks from '../HowItWorks';
 import ImagesHome from '../ImagesHome'
 import Footer from '../Footer';
@@ -15,15 +18,26 @@ function Home() {
     config: { duration: 1000 }, // Adjust the duration as needed
   });
 
+  let navbarComponent;
+  const isUserSignedIn = isAuthenticated;
+  if (isUserSignedIn == 0) {
+    navbarComponent = <NavBarSign />;
+  } else if (isUserSignedIn == 1) {
+    navbarComponent = <Navbar />;
+  } else{
+    navbarComponent = <NavbarBarber />;
+  }
+
   return (
     <>
-      <NavBarSign />
+      {navbarComponent}
       <div className='intro-logo'>
         <animated.img src={logo} alt="Logo" style={slideUp} />
         <animated.h1 style={slideUp}>Providing top-quality beauty services</animated.h1>
-        <animated.button style={slideUp} 
-          className="button" onClick={() => window.location.href = '/SignUp'}>
-            Book Now</animated.button> 
+        <animated.button style={slideUp}                                                                                          // take us to search barbers            take us to create barbershop
+          className="button" onClick={isUserSignedIn === 0 ? () => window.location.href = '/SignUp' : isUserSignedIn === 1 ? () => window.location.href = '/' : () => window.location.href = '/'}>
+            {isUserSignedIn === 2 ? 'Create BarberShop' : 'Book Now'}
+        </animated.button> 
       </div>
 
       <div className='comp-wrapper'>

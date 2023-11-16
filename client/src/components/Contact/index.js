@@ -1,6 +1,10 @@
 import { useState } from "react";
+import axios from 'axios'
+import isAuthenticated from '../../UserAuth'
 import { TextField, Button, Typography, Box } from "@mui/material";
 import NavBarSign from '../NavBarSign'
+import NavbarBarber from '../NavbarBarber'
+import Navbar from '../Navbar'
 import Footer from '../Footer'
 
 export default function Contact() {
@@ -8,13 +12,28 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e){
     e.preventDefault();
+    // try{
+    //   await axios.post("http://localhost:3000/", {name, email, message})
+    // }catch(e){
+    //   console.log(e);
+    // }
   };
+
+  let navbarComponent;
+  const isUserSignedIn = isAuthenticated;
+  if (isUserSignedIn == 0) {
+    navbarComponent = <NavBarSign />;
+  } else if (isUserSignedIn == 1) {
+    navbarComponent = <Navbar />;
+  } else{
+    navbarComponent = <NavbarBarber />;
+  }
 
   return (
     <div>
-        <NavBarSign></NavBarSign>
+      {navbarComponent}
     <Box
       sx={{
         display: "flex",
@@ -23,7 +42,7 @@ export default function Contact() {
         height: "100vh",
       }}
     >
-      <Box sx={{ maxWidth: 600, mx: "auto", p: 2 , backgroundColor: 'white', padding: 5, borderRadius: 10}}>
+      <Box sx={{ maxWidth: 600, mx: "auto", p: 2 , backgroundColor: 'white', padding: 5, borderRadius: 5}}>
         <Typography variant="h4" align="center" mb={2}>
           Contact Us
         </Typography>
@@ -55,7 +74,11 @@ export default function Contact() {
             multiline
             rows={4}
           />
-          <Button variant="contained" type="submit" sx={{ mt: 2 }}>
+          <Button variant="contained" type="submit" sx={{ mt: 2,
+            backgroundColor:'red', width:'100%',
+            '&:hover': {
+              bgcolor: 'lightpink',
+            },}}>
             Submit
           </Button>
         </form>
