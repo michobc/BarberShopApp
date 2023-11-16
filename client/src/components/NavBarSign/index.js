@@ -139,6 +139,7 @@ export default function PrimarySearchAppBar() {
                 },
                 borderRadius: '20px', // Add rounded corners
                 padding: '8px 20px', // Adjust padding
+                whiteSpace: 'nowrap',
               }}
             >
               Sign Up
