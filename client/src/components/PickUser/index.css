@@ -1,23 +1,41 @@
-.button {
-    background-color: red; /* Change the background color */
-    color: white; /* Change the text color */
-    border: none;
-    padding: 15px 25px; /* Adjust padding as needed */
-    font-size: 18px;
-    border-radius: 50px; /* Add rounded corners */
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Add a smooth hover effect */
-  }
-  
-.button:hover {
-    background-color: rgb(255, 122, 122); /* Change the background color on hover */
+.blur {
+    backdrop-filter: blur(5px);
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr ;
+
 }
 
-.intro-logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
-    /* margin-top: 50px; */
+.center{
+grid-row:2/3;
+}
+
+.intro-logo2{
+grid-row:3/4;
+margin-top:0;
+padding-top: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+flex-direction: column;
+
+}
+
+.buttonn{
+background-color: red;
+color: white;
+border: none;
+padding: 25px 45px;
+margin-top:0;
+font-size: 22px;
+border-radius: 50px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+
+}
+
+.buttonn:hover {
+background-color: rgb(255, 122, 122);
 }

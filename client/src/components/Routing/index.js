@@ -6,6 +6,8 @@ import SignIn from '../SignIn'
 import AboutUs from '../About';
 import Contact from '../Contact'
 import PickUser from '../PickUser';
+import SignUpBarber from '../SignUpBarber';
+import CreateBarberShop from '../CreateBarberShop';
 
 const user = {
   firstName: 'John',
@@ -25,7 +27,9 @@ function Routing(){
       <Route path='/Profile' element={<Profile user={user}/>}/>
       <Route path='/SignUp' element={<SignUp/>}/>
       <Route path='/SignIn' element={<SignIn/>}/>
+      <Route path='/SignUpBarber' element={<SignUpBarber/>}/>
       <Route path='/About' element={<AboutUs/>}/>
+      <Route path='/CreateBarberShop' element={<CreateBarberShop/>}/>
       <Route path='/Contact' element={<Contact/>}/>
       <Route path='/PickUser' element={<PickUser/>} />
     </Routes>

@@ -148,7 +148,7 @@ export default function PrimarySearchAppBar() {
       </AppBar>
       <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
         <List>
-          <ListItem button onClick={() => window.location.href = '/SignUp'}>
+          <ListItem button onClick={() => window.location.href = '/PickUser'}>
             <ListItemText primary="Sign Up" />
           </ListItem>
           <ListItem button onClick={() => window.location.href = '/Contact'}>

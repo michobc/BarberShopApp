@@ -3,8 +3,12 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
+// import NavBarSign from '../NavBarSign'
+// import NavbarBarber from '../NavbarBarber'
+// import Navbar from '../Navbar'
+// import isAuthenticated from '../../UserAuth'
 import './index.css'
-
+ 
 const images = [
   {
     url: 'https://nationalbarbers.org/wp-content/uploads/2022/07/NAOB-Blog-Image-7-768x432.png',
@@ -19,7 +23,7 @@ const images = [
     link: '/SignUpBarber',
   },
 ];
-
+ 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: 'relative',
   height: 200,
@@ -40,7 +44,7 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
     },
   },
 }));
-
+ 
 const ImageSrc = styled('span')({
   position: 'absolute',
   left: 0,
@@ -50,7 +54,7 @@ const ImageSrc = styled('span')({
   backgroundSize: 'cover',
   backgroundPosition: 'center 40%',
 });
-
+ 
 const Image = styled('span')(({ theme }) => ({
   position: 'absolute',
   left: 0,
@@ -62,7 +66,7 @@ const Image = styled('span')(({ theme }) => ({
   justifyContent: 'center',
   color: theme.palette.common.white,
 }));
-
+ 
 const ImageBackdrop = styled('span')(({ theme }) => ({
   position: 'absolute',
   left: 0,
@@ -73,7 +77,7 @@ const ImageBackdrop = styled('span')(({ theme }) => ({
   opacity: 0.4,
   transition: theme.transitions.create('opacity'),
 }));
-
+ 
 const ImageMarked = styled('span')(({ theme }) => ({
   height: 3,
   width: 18,
@@ -83,46 +87,56 @@ const ImageMarked = styled('span')(({ theme }) => ({
   left: 'calc(50% - 9px)',
   transition: theme.transitions.create('opacity'),
 }));
-
+ 
+ 
 export default function PickUser() {
   return (
-    <>
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%', marginTop: '20%' }}>
-      {images.map((image) => (
-        <ImageButton
-          focusRipple
-          key={image.title}
-          style={{
-            width: image.width,
-          }}
-          onClick={() => window.location.href = `${image.link}`}
-        >
-          <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-          <ImageBackdrop className="MuiImageBackdrop-root" />
-          <Image>
-            <Typography
-              component="span"
-              variant="subtitle1"
-              color="inherit"
-              sx={{
-                position: 'relative',
-                p: 4,
-                pt: 2,
-                pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+ 
+    <div className='blur'>
+      <div className='center'>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%'}}>
+          {images.map((image) => (
+            <ImageButton
+              focusRipple
+              key={image.title}
+              style={{
+                width: image.width,
+                minHeight: 450,
               }}
+              onClick={() => window.location.href = `${image.link}`}
             >
-              {image.title}
-              <ImageMarked className="MuiImageMarked-root" />
-            </Typography>
-          </Image>
-        </ImageButton>
-      ))}
-    </Box>
-    <div className='intro-logo'>
-        <button className="button" onClick={() => window.location.href = '/'}>
-            Return
-        </button> 
-    </div>
-    </>
+               <ImageSrc style={{ backgroundImage: `url(${image.url})`, backgroundSize: 'cover'}}>
+     
+               </ImageSrc>
+             
+ 
+              <ImageBackdrop className="MuiImageBackdrop-root" />
+              <Image>
+                <Typography
+                  component="span"
+                  variant="subtitle1"
+                  color="inherit"
+                  sx={{
+                    position: 'relative',
+                    p: 4,
+                    pt: 2,
+                    pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                  }}
+                >
+                  {image.title}
+                  <ImageMarked className="MuiImageMarked-root" />
+                </Typography>
+              </Image>
+            </ImageButton>
+          ))}
+        </Box>
+      </div>
+      <div className='intro-logo2'>
+            <button className="buttonn" onClick={() => window.location.href = '/'}>
+                Return
+            </button>
+      </div>
+      </div>
+ 
   );
 }

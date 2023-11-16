@@ -168,6 +168,13 @@ export default function SignUpBarber() {
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
+                    fullWidth
+                    name="barbershop"
+                    label="BarberShop"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
                     error={!!errors.email}
                     helperText={errors.email}
                     required
@@ -210,6 +217,7 @@ export default function SignUpBarber() {
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
+                    required
                     name="phoneNumber"
                     label="Phone Number"
                   />
