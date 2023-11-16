@@ -38,11 +38,11 @@ export default function ScheduleProcessCards() {
   }, []);
 
   return (
-    <Grid container spacing={3}>
+    <Grid className='booking' container spacing={3}>
       {steps.map((step, index) => (
         <Grid item xs={12} sm={6} md={3} key={index}>
           <Card
-            sx={{ maxWidth: 345, transition: 'transform 1s ease', transform: 'translateY(100%)' }}
+            sx={{ maxWidth: 345, height:'100%', display: 'flex', flexDirection: 'column', transition: 'transform 1s ease', transform: 'translateY(100%)' }}
             className="slide-up-card"
           >
             <CardActionArea>

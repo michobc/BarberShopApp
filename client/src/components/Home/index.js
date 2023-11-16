@@ -45,6 +45,8 @@ function Home() {
       </div>
       
       <div className='comp-wrapper'>
+        <animated.h1  className='title1'style={slideUp}>Booking Process</animated.h1>
+        <hr className='line1'></hr>
         <HowItWorks />
       </div>
 

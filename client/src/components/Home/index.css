@@ -35,6 +35,15 @@ body{
     width: 35%;
 }
 
+.line1{
+    margin-bottom: 40px;
+    border-width: 1.5px;
+}
+
+.title1{
+    margin-bottom:5px;
+}
+
 h1{
     font-size: 240%;
     color: rgb(255, 255, 255);
