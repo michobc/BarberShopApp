@@ -35,7 +35,7 @@ function Home() {
         <animated.img src={logo} alt="Logo" style={slideUp} />
         <animated.h1 style={slideUp}>Providing top-quality beauty services</animated.h1>
         <animated.button style={slideUp}                                                                                          // take us to search barbers            take us to create barbershop
-          className="button" onClick={isUserSignedIn === 0 ? () => window.location.href = '/SignUp' : isUserSignedIn === 1 ? () => window.location.href = '/' : () => window.location.href = '/CreateBarberShop'}>
+          className="button" onClick={isUserSignedIn === 0 ? () => window.location.href = '/PickUser' : isUserSignedIn === 1 ? () => window.location.href = '/' : () => window.location.href = '/CreateBarberShop'}>
             {isUserSignedIn === 2 ? 'Create BarberShop' : 'Book Now'}
         </animated.button> 
       </div>
