@@ -33,7 +33,7 @@ const boxStyle = {
 const closeButtonStyle = {
   position: 'relative',
   top: theme.spacing(0),
-  left: theme.spacing(20),
+  left: '230px',
 };
 
 const avatarStyle = {
@@ -66,7 +66,7 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box sx={boxStyle}>
 

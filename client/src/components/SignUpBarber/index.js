@@ -102,7 +102,7 @@ export default function SignUpBarber() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
@@ -126,7 +126,7 @@ export default function SignUpBarber() {
 
             <IconButton sx={{position: 'relative',
                             top: 0,
-                            left: '160px',}} 
+                            left: '230px',}} 
                             onClick={() => window.location.href = '/PickUser'}>
               <CloseIcon />
             </IconButton>
