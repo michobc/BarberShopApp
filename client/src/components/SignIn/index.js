@@ -33,7 +33,7 @@ const boxStyle = {
 const closeButtonStyle = {
   position: 'relative',
   top: theme.spacing(0),
-  left: '230px',
+  left: '200px',
 };
 
 const avatarStyle = {

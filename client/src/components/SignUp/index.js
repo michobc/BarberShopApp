@@ -126,7 +126,7 @@ export default function SignUpBarber() {
 
             <IconButton sx={{position: 'relative',
                             top: 0,
-                            left: '230px',}} 
+                            left: '200px',}} 
                             onClick={() => window.location.href = '/PickUser'}>
               <CloseIcon />
             </IconButton>
