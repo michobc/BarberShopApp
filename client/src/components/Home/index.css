@@ -56,8 +56,8 @@ h1{
     background-color: red; /* Change the background color */
     color: white; /* Change the text color */
     border: none;
-    padding: 15px 25px; /* Adjust padding as needed */
-    font-size: 18px;
+    padding: 20px 45px; /* Adjust padding as needed */
+    font-size: 26px;
     border-radius: 50px; /* Add rounded corners */
     cursor: pointer;
     transition: background-color 0.3s ease; /* Add a smooth hover effect */
