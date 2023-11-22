@@ -9,6 +9,9 @@ import PickUser from '../PickUser';
 import SignUpBarber from '../SignUpBarber';
 import CreateBarberShop from '../CreateBarberShop';
 import Dashboard from '../Dashboard';
+import Shops from '../Shops';
+import MyShops from '../MyShops';
+import ShopProfile from '../ShopProfile';
 
 const user = {
   firstName: 'John',
@@ -18,6 +21,12 @@ const user = {
   address: 'New York, USA',
   phoneNumber: '0322222',
   profilePicture: 'https://example.com/profile-picture.jpg',
+};
+
+const shop = {
+  name: 'chez faysal',
+  address: 'bsalim streets',
+  telephone: '01/011111',
 };
 
 function Routing(){
@@ -34,6 +43,9 @@ function Routing(){
       <Route path='/Contact' element={<Contact/>}/>
       <Route path='/PickUser' element={<PickUser/>} />
       <Route path='/DashBoard' element={<Dashboard/>}/>
+      <Route path='/Shops' element={<Shops/>} />
+      <Route path='/MyShops' element={<MyShops/>} />
+      <Route path='/ShopProfile' element={<ShopProfile shop={shop}/>} />
     </Routes>
     </>
   );

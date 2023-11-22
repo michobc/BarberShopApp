@@ -1,191 +1,93 @@
 import React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 
-const defaultTheme = createTheme();
-export default function Footer() {
+export default function App() {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Box
-        sx={{
-          backgroundColor: '#333',
-          marginTop: '50px',
-          boxShadow: '0px -5px 10px rgba(0, 0, 0, 0.1)',
-          paddingTop: '20px',
-          paddingBottom: '20px',
-          color: 'white',
-        }}
-      >
-        <Container maxWidth="lg">
-          <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2, color: '#fff' }}>
-            <Link href="/Contact" color="inherit" style={{ textDecoration: 'none' }}>
-              Contact Us
-            </Link>
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 2, color: '#fff' }}>
-            Address: 123 Barber Street, City, ZIP
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 2, color: '#fff' }}>
-            Phone: (123) 456-7890
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 2, color: '#fff' }}>
-            Email: <Link href="mailto:info@barbershop.com" color="secondary">
-              info@barbershop.com
-            </Link>
-          </Typography>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2, color: '#fff' }}>
-            <Link href="/About" color="inherit" style={{ textDecoration: 'none' }}>
-              About Us
-            </Link>
-          </Typography>
-        </Container>
-      </Box>
-      <Box
-        sx={{
-          backgroundColor: 'black',
-          paddingTop: '10px',
-          paddingBottom: '10px',
-          color: 'white',
-          textAlign: 'center',
-        }}
-      >
-        <Container maxWidth="lg">
-          <Typography variant="body2" color="white">
-            &copy; {new Date().getFullYear()} BarberShop. All Rights Reserved.
-          </Typography>
-        </Container>
-      </Box>
-    </ThemeProvider>
+    <MDBFooter bgColor='black' className='text-center text-lg-start text-muted'>
+      <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
+        <div className='me-5 d-none d-lg-block'>
+          <span>Get connected with us on social networks:</span>
+        </div>
+
+        <div>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon color='secondary' fab icon='facebook-f' />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon color='secondary' fab icon='twitter' />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon color='secondary' fab icon='google' />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon color='secondary' fab icon='instagram' />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon color='secondary' fab icon='linkedin' />
+          </a>
+          <a href='' className='me-4 text-reset'>
+            <MDBIcon color='secondary' fab icon='github' />
+          </a>
+        </div>
+      </section>
+
+      <section className=''>
+        <MDBContainer className='text-center text-md-start mt-5' style={{backgroundColor: 'black'}}>
+          <MDBRow className='mt-3'>
+            <MDBCol md='3' lg='4' xl='3' className='mx-auto mb-4' >
+              <h6 className='text-uppercase fw-bold mb-4'>
+                <MDBIcon color='secondary' icon='gem' className='me-3' />
+                The Barber
+              </h6>
+              <p>
+                Providing top-quality beauty services,
+                Connect with barbers all over the country!
+              </p>
+            </MDBCol>
+
+            <MDBCol md='3' lg='2' xl='2' className='mx-auto mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
+              <p>
+                <a href='/Contact' className='text-reset'>
+                  Help
+                </a>
+              </p>
+              <p>
+                <a href='/Contact' className='text-reset'>
+                  About
+                </a>
+              </p>
+            </MDBCol>
+
+            <MDBCol md='4' lg='3' xl='3' className='mx-auto mb-md-0 mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
+              <p>
+                <MDBIcon color='secondary' icon='home' className='me-2' />
+                Lebanon
+              </p>
+              <p>
+                <MDBIcon color='secondary' icon='envelope' className='me-3' />
+                thebarber@hotmail.com
+              </p>
+              <p>
+                <MDBIcon color='secondary' icon='phone' className='me-3' /> + 01 234 567 88
+              </p>
+              <p>
+                <MDBIcon color='secondary' icon='print' className='me-3' /> + 01 234 567 89
+              </p>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      </section>
+
+      <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+        © 2023 Copyright:
+        <a className='text-reset fw-bold' href='/'>
+          thebarber.com
+        </a>
+      </div>
+    </MDBFooter>
   );
 }
-
-
-// import React from 'react';
-// import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-// import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
-
-// export default function App() {
-//   return (
-//     <MDBFooter bgColor='light' className='text-center text-lg-start text-muted'>
-//       <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
-//         <div className='me-5 d-none d-lg-block'>
-//           <span>Get connected with us on social networks:</span>
-//         </div>
-
-//         <div>
-//           <a href='' className='me-4 text-reset'>
-//             <MDBIcon color='secondary' fab icon='facebook-f' />
-//           </a>
-//           <a href='' className='me-4 text-reset'>
-//             <MDBIcon color='secondary' fab icon='twitter' />
-//           </a>
-//           <a href='' className='me-4 text-reset'>
-//             <MDBIcon color='secondary' fab icon='google' />
-//           </a>
-//           <a href='' className='me-4 text-reset'>
-//             <MDBIcon color='secondary' fab icon='instagram' />
-//           </a>
-//           <a href='' className='me-4 text-reset'>
-//             <MDBIcon color='secondary' fab icon='linkedin' />
-//           </a>
-//           <a href='' className='me-4 text-reset'>
-//             <MDBIcon color='secondary' fab icon='github' />
-//           </a>
-//         </div>
-//       </section>
-
-//       <section className=''>
-//         <MDBContainer className='text-center text-md-start mt-5'>
-//           <MDBRow className='mt-3'>
-//             <MDBCol md='3' lg='4' xl='3' className='mx-auto mb-4'>
-//               <h6 className='text-uppercase fw-bold mb-4'>
-//                 <MDBIcon color='secondary' icon='gem' className='me-3' />
-//                 Company name
-//               </h6>
-//               <p>
-//                 Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit
-//                 amet, consectetur adipisicing elit.
-//               </p>
-//             </MDBCol>
-
-//             <MDBCol md='2' lg='2' xl='2' className='mx-auto mb-4'>
-//               <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
-//               <p>
-//                 <a href='#!' className='text-reset'>
-//                   Angular
-//                 </a>
-//               </p>
-//               <p>
-//                 <a href='#!' className='text-reset'>
-//                   React
-//                 </a>
-//               </p>
-//               <p>
-//                 <a href='#!' className='text-reset'>
-//                   Vue
-//                 </a>
-//               </p>
-//               <p>
-//                 <a href='#!' className='text-reset'>
-//                   Laravel
-//                 </a>
-//               </p>
-//             </MDBCol>
-
-//             <MDBCol md='3' lg='2' xl='2' className='mx-auto mb-4'>
-//               <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
-//               <p>
-//                 <a href='#!' className='text-reset'>
-//                   Pricing
-//                 </a>
-//               </p>
-//               <p>
-//                 <a href='#!' className='text-reset'>
-//                   Settings
-//                 </a>
-//               </p>
-//               <p>
-//                 <a href='#!' className='text-reset'>
-//                   Orders
-//                 </a>
-//               </p>
-//               <p>
-//                 <a href='#!' className='text-reset'>
-//                   Help
-//                 </a>
-//               </p>
-//             </MDBCol>
-
-//             <MDBCol md='4' lg='3' xl='3' className='mx-auto mb-md-0 mb-4'>
-//               <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
-//               <p>
-//                 <MDBIcon color='secondary' icon='home' className='me-2' />
-//                 New York, NY 10012, US
-//               </p>
-//               <p>
-//                 <MDBIcon color='secondary' icon='envelope' className='me-3' />
-//                 info@example.com
-//               </p>
-//               <p>
-//                 <MDBIcon color='secondary' icon='phone' className='me-3' /> + 01 234 567 88
-//               </p>
-//               <p>
-//                 <MDBIcon color='secondary' icon='print' className='me-3' /> + 01 234 567 89
-//               </p>
-//             </MDBCol>
-//           </MDBRow>
-//         </MDBContainer>
-//       </section>
-
-//       <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-//         © 2021 Copyright:
-//         <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
-//           MDBootstrap.com
-//         </a>
-//       </div>
-//     </MDBFooter>
-//   );
-// }

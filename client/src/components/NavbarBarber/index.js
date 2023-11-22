@@ -3,7 +3,6 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -97,6 +96,22 @@ export default function PrimarySearchAppBar() {
             <Button
               color="inherit"
               onClick={() => {
+                window.location.href = '/MyShops';
+              }}
+              sx={{
+                color: 'white', // Change the text color
+                '&:hover': {
+                  color: 'red', // Change the hover text color
+                },
+              }}
+            >
+              MyShops
+            </Button>
+          </Box>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Button
+              color="inherit"
+              onClick={() => {
                 window.location.href = '/About';
               }}
               sx={{
@@ -152,8 +167,8 @@ export default function PrimarySearchAppBar() {
           <ListItem button onClick={() => window.location.href = '/Profile'}>
             <ListItemText primary="Profile" />
           </ListItem>
-          <ListItem button onClick={() => window.location.href = '/'}>
-            <ListItemText primary="Dashboard" />
+          <ListItem button onClick={() => window.location.href = '/MyShops'}>
+            <ListItemText primary="MyShops" />
           </ListItem>
           <ListItem button onClick={() => window.location.href = '/Contact'}>
             <ListItemText primary="Contact" />
