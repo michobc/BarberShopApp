@@ -49,11 +49,13 @@ function Home() {
         <VideoPlayer></VideoPlayer>
       </div>
       
+
+      {isUserSignedIn === 0 || isUserSignedIn === 1 ?( 
       <div className='comp-wrapper'>
         <animated.h1  className='title1'style={slideUp}>Booking Process</animated.h1>
         <hr className='line1'></hr>
         <HowItWorks />
-      </div>
+      </div>):null}
 
       <Footer />
     </>

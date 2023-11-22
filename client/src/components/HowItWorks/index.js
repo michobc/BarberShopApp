@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import Grid from '@mui/material/Grid';
 import PropTypes from 'prop-types';
+import isAuthenticated from '../../UserAuth';
 import './index.css';
 
 
@@ -94,10 +95,11 @@ export default function ScheduleProcessCards() {
   }, []);
 
 
-  
+  const isUserSignedIn = isAuthenticated;
 
   return (
-    <Grid className='booking' container spacing={3} onClick={() => {window.location.href = '/HowItWorks';}}>
+    
+    <Grid className='booking' container spacing={3} onClick={isUserSignedIn === 0 ? () => window.location.href = '/SignUp' :() => window.location.href = '/Shops'}>
       {steps.map((step, index) => (
         <Grid item xs={12} sm={6} md={3} key={index}>
           <Card
