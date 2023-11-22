@@ -62,51 +62,27 @@ export default ImagesSlider;
 
 const slideImages = [
   {
-    url: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
-    caption: 'Bed',
+    url: 'https://assets-global.website-files.com/644a9d9ce529ef8812f82a28/647fb85c69e95444243ef9bd_Henley%27s%20Gentlemen%27s%20Grooming%20-%20Barbershop%20and%20Mens%20Grooming.webp',
+    caption: 'shop1',
   },
   {
-    url: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
-    caption: 'Books',
+    url: 'https://highendbarbershop.com/wp-content/uploads/2021/02/barbeshop-.jpg',
+    caption: 'shop2',
   },
   {
-    url: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
-    caption: 'Sink',
+    url: 'https://images.squarespace-cdn.com/content/v1/5d54d94fb05f400001454be1/1568608791977-G3XJ1VI0BDENMQ1A78VM/CHA02630.jpg?format=2500w',
+    caption: 'shop3',
   },
   {
-    url: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
-    caption: 'Kitchen',
+    url: 'https://nationalbarbers.org/wp-content/uploads/2020/09/barber-services-1.png',
+    caption: 'shop4',
   },
   {
-    url: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
-    caption: 'Blinds',
+    url: 'https://thebarbercalgary.com/wp-content/uploads/2019/10/Barbershop-Calgary-se-1024x683.jpg',
+    caption: 'shop5',
   },
   {
-    url: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
-    caption: 'Chairs',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
-    caption: 'Laptop',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
-    caption: 'Doors',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
-    caption: 'Coffee',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
-    caption: 'Storage',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
-    caption: 'Candle',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
-    caption: 'Coffee table',
+    url: 'https://images.squarespace-cdn.com/content/v1/575f3f967c65e4c54c1ed5db/1547422410196-ANFIL6FGG648K5JP9JA9/IMG_4805.JPG?format=1000w',
+    caption: 'shop6',
   },
 ];

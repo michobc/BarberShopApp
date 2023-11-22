@@ -52,7 +52,7 @@ const UserProfile = ({ user }) => {
         minHeight: '100vh', // Center vertically on the page
       }}
     >
-      <Card sx={{ maxWidth: 1000, padding: 10, textAlign: 'center', boxShadow: 20, borderRadius: 12, backgroundColor: 'white' }}>
+      <Card sx={{ width: 1000, padding: 10, textAlign: 'center', boxShadow: 20, borderRadius: 2, backgroundColor: 'white' }}>
         <CardContent>
           <Avatar alt={editedUser.name} src={editedUser.profilePicture} sx={{ width: 150, height: 150, marginBottom: 2 }} />
           {isEditing && (

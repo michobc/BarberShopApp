@@ -125,22 +125,6 @@ export default function CreateBarberShop() {
               >
                 Create
               </Button>
-              <Grid container justifyContent="flex-end">
-                <Grid item>
-                  <Link
-                    href="/SignIn"
-                    variant="body2"
-                    sx={{
-                      color: 'primary.main',
-                      '&:hover': {
-                        textDecoration: 'underline',
-                      },
-                    }}
-                  >
-                    Already have an account? Sign in
-                  </Link>
-                </Grid>
-              </Grid>
             </Box>
           </Box>
         </Box>
