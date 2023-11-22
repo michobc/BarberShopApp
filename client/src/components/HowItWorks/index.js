@@ -97,7 +97,7 @@ export default function ScheduleProcessCards() {
   
 
   return (
-    <Grid className='booking' container spacing={3}>
+    <Grid className='booking' container spacing={3} onClick={() => {window.location.href = '/HowItWorks';}}>
       {steps.map((step, index) => (
         <Grid item xs={12} sm={6} md={3} key={index}>
           <Card

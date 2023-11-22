@@ -34,6 +34,7 @@ function Routing(){
       <Route path='/Contact' element={<Contact/>}/>
       <Route path='/PickUser' element={<PickUser/>} />
       <Route path='/DashBoard' element={<Dashboard/>}/>
+      <Route path='/HowItWorks' element={<SignUp/>}/>
     </Routes>
     </>
   );
