@@ -70,7 +70,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
@@ -94,7 +94,7 @@ export default function SignUp() {
 
             <IconButton sx={{position: 'relative',
                             top: 0,
-                            left: '160px',}} 
+                            left: '200px',}} 
                             onClick={() => window.location.href = '/'}>
               <CloseIcon />
             </IconButton>
