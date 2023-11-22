@@ -14,7 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useState } from 'react';
 const theme = createTheme();
 
 const boxStyle = {
@@ -55,13 +56,32 @@ const submitButtonStyle = {
 };
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const {dispatch} = useAuthContext()
+  const [email,setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const response = await fetch('http://localhost:3001/api/user/login',{
+      method:'POST',
+      body: JSON.stringify({email,password}),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    const json = await response.json()
+    if (!response.ok){
+      console.log(json.error);
+    }
+    console.log(json);
+    if (response.ok){
+      //save the user to local storage
+      localStorage.setItem('user',JSON.stringify(json))
+
+      //update the auth context
+      dispatch({type:'LOGIN',payload :json})
+      
+      console.log("loggedin")
+    }
   };
 
   return (
@@ -90,6 +110,8 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e)=>setEmail(e.target.value)}
+              
             />
             <TextField
               margin="normal"
@@ -100,6 +122,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e)=>setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
