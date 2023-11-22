@@ -9,6 +9,7 @@ import PickUser from '../PickUser';
 import SignUpBarber from '../SignUpBarber';
 import CreateBarberShop from '../CreateBarberShop';
 import Dashboard from '../Dashboard';
+import Shops from '../Shops';
 
 const user = {
   firstName: 'John',
@@ -34,6 +35,7 @@ function Routing(){
       <Route path='/Contact' element={<Contact/>}/>
       <Route path='/PickUser' element={<PickUser/>} />
       <Route path='/DashBoard' element={<Dashboard/>}/>
+      <Route path='/Shops' element={<Shops/>} />
     </Routes>
     </>
   );
