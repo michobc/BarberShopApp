@@ -113,13 +113,13 @@ export default function ScheduleProcessCards() {
           >
             <CardActionArea>
             <CardMedia
-  component="div" 
-  style={{ position: 'relative' }}
->
+                component="div" 
+                style={{ position: 'relative' }}
+              >
   <img
     src={step.image}
     alt={step.title}
-    style={{ width: '100%', height: '100%', objectFit: 'cover', }}
+    style={{ width: '100%', height: '100%', objectFit: 'cover',}}
   />
   <span className="transparent-blur-number">{index+1}</span>
   

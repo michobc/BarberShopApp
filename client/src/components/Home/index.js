@@ -9,6 +9,7 @@ import ImagesHome from '../ImagesHome'
 import Footer from '../Footer';
 import logo from '../../logo.jpg';
 import './index.css';
+import VideoPlayer from '../VideoPlayer';
 
 function Home() {
   // Define the slide-up animation
@@ -42,6 +43,10 @@ function Home() {
 
       <div className='comp-wrapper'>
         <ImagesHome></ImagesHome>
+      </div>
+      
+      <div>
+        <VideoPlayer></VideoPlayer>
       </div>
       
       <div className='comp-wrapper'>
