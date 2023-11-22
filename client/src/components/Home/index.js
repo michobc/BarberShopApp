@@ -9,6 +9,7 @@ import ImagesHome from '../ImagesHome'
 import Footer from '../Footer';
 import logo from '../../logo.jpg';
 import './index.css';
+import VideoPlayer from '../VideoPlayer';
 
 function Home() {
   // Define the slide-up animation
@@ -35,7 +36,7 @@ function Home() {
         <animated.img src={logo} alt="Logo" style={slideUp} />
         <animated.h1 style={slideUp}>Providing top-quality beauty services</animated.h1>
         <animated.button style={slideUp}                                                                                          // take us to search barbers            take us to create barbershop
-          className="button" onClick={isUserSignedIn === 0 ? () => window.location.href = '/PickUser' : isUserSignedIn === 1 ? () => window.location.href = '/' : () => window.location.href = '/CreateBarberShop'}>
+          className="button" onClick={isUserSignedIn === 0 ? () => window.location.href = '/PickUser' : isUserSignedIn === 1 ? () => window.location.href = '/Shops' : () => window.location.href = '/CreateBarberShop'}>
             {isUserSignedIn === 2 ? 'Create BarberShop' : 'Book Now'}
         </animated.button> 
       </div>
@@ -44,11 +45,17 @@ function Home() {
         <ImagesHome></ImagesHome>
       </div>
       
+      <div>
+        <VideoPlayer></VideoPlayer>
+      </div>
+      
+
+      {isUserSignedIn === 0 || isUserSignedIn === 1 ?( 
       <div className='comp-wrapper'>
         <animated.h1  className='title1'style={slideUp}>Booking Process</animated.h1>
         <hr className='line1'></hr>
         <HowItWorks />
-      </div>
+      </div>):null}
 
       <Footer />
     </>
