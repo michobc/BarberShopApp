@@ -168,6 +168,9 @@ export default function PrimarySearchAppBar() {
           <ListItem button onClick={() => window.location.href = '/PickUser'}>
             <ListItemText primary="Sign Up" />
           </ListItem>
+          <ListItem button onClick={() => window.location.href = '/Shops'}>
+            <ListItemText primary="Shops" />
+          </ListItem>
           <ListItem button onClick={() => window.location.href = '/Contact'}>
             <ListItemText primary="Contact" />
           </ListItem>

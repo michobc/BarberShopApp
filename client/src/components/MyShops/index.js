@@ -10,32 +10,9 @@ import Navbar from '../Navbar'
 import NavbarBarber from '../NavbarBarber'
 import Footer from '../Footer'
 import isAuthenticated from '../../UserAuth';
+import Dashboard from '../Dashboard';
 
 const steps = [
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
   {
     name: 'chez faysal',
     address: 'bsalim streets',
@@ -60,7 +37,7 @@ if (isUserSignedIn == 0) {
   navbarComponent = <NavbarBarber />;
 }
 
-export default function Shops() {
+export default function MyShops() {
   useEffect(() => {
     const cards = document.querySelectorAll('.slide-up-card');
     cards.forEach((card) => {
@@ -76,7 +53,6 @@ export default function Shops() {
       {steps.map((step, index) => (
         <Grid item xs={12} sm={6} md={4} key={index}>
           <Card
-            onClick={() => {isUserSignedIn ? window.location.href = '/ShopProfile' : window.location.href = '/SignIn'}}
             sx={{
               maxWidth: 345,
               height: '100%',
@@ -86,6 +62,7 @@ export default function Shops() {
               transform: 'translateY(100%)',
             }}
             className="slide-up-card"
+            onClick={() => {window.location.href = '/Dashboard';}}
           >
             <CardActionArea>
             <CardMedia

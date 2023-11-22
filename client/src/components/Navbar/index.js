@@ -97,6 +97,22 @@ export default function PrimarySearchAppBar() {
             <Button
               color="inherit"
               onClick={() => {
+                window.location.href = '/Profile';
+              }}
+              sx={{
+                color: 'white', // Change the text color
+                '&:hover': {
+                  color: 'red', // Change the hover text color
+                },
+              }}
+            >
+              Appointments
+            </Button>
+          </Box>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Button
+              color="inherit"
+              onClick={() => {
                 window.location.href = '/Shops';
               }}
               sx={{
@@ -163,10 +179,16 @@ export default function PrimarySearchAppBar() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
+      <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)} >
         <List>
           <ListItem button onClick={() => window.location.href = '/Profile'}>
             <ListItemText primary="Profile" />
+          </ListItem>
+          <ListItem button onClick={() => window.location.href = '/Shops'}>
+            <ListItemText primary="Shops" />
+          </ListItem>
+          <ListItem button onClick={() => window.location.href = '/Profile'}>
+            <ListItemText primary="Appointments" />
           </ListItem>
           <ListItem button onClick={() => window.location.href = '/Contact'}>
             <ListItemText primary="Contact" />
