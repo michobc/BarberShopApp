@@ -97,6 +97,22 @@ export default function PrimarySearchAppBar() {
             <Button
               color="inherit"
               onClick={() => {
+                window.location.href = '/Shops';
+              }}
+              sx={{
+                color: 'white', // Change the text color
+                '&:hover': {
+                  color: 'red', // Change the hover text color
+                },
+              }}
+            >
+              Shops
+            </Button>
+          </Box>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Button
+              color="inherit"
+              onClick={() => {
                 window.location.href = '/About';
               }}
               sx={{
