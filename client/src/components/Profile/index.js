@@ -23,23 +23,10 @@ let navbarComponent;
 
 const UserProfile = ({ user }) => {
   return (
-<<<<<<< HEAD
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh', // Center vertically on the page
-      }}
-    >
-      <Card sx={{ width: 1000, padding: 10, textAlign: 'center', boxShadow: 20, borderRadius: 2, backgroundColor: 'white' }}>
-=======
     <>
     {navbarComponent}
     <Box className='allprofile'>
       <Card className='personalinfo' sx={{padding: 10, textAlign: 'center', boxShadow: 20, borderRadius: 12, backgroundColor: 'white' }}>
->>>>>>> origin/berna
         <CardContent>
           <div id='pic'>
             <img id='picc' alt='profile_picture' src={avatarpic}/>
