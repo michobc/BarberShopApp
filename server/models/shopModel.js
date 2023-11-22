@@ -3,19 +3,23 @@ const Schema = mongoose.Schema
 
 const shopSchema = new Schema({
     name:{
-        type:Time,
-        require: true
-    },
-    owner:{
         type:String,
-        require: true
+        required: true
+    },
+    owner_ID:{
+        type:String,
+        required: true
     },
     address:{
-        name:String,
-        require: true
+        type:String,
+        required: true
+    },
+    phoneNumber:{
+        type:String,
+        required: true
     }
 }, {timestamps: true})
 
-module.exports = mongoose.model('shop', appointmentsSchema)
+module.exports = mongoose.model('shop', shopSchema)
 
 

@@ -3,7 +3,10 @@ const app = express(); //create roots , applying middleware, api start...
 const mongoose = require('mongoose');
 //user
 const userRoutes = require('./routes/User');
-
+//shop
+const shopRoutes = require('./routes/Shop')
+//app
+const appRoutes = require('./routes/Appointment')
 // used to connect to our react app without any errors
 const cors = require("cors");
 
@@ -12,6 +15,8 @@ app.use(express.json());
 app.use(cors());
 //connect to DB
 app.use('/api/user',userRoutes);
+app.use('/api/shop',shopRoutes);
+app.use('/api/appointment',appRoutes);
 mongoose.connect("mongodb+srv://dbUser:dbUserClusterGBM@cluster0.xgk5bnh.mongodb.net/Barbershopdb?retryWrites=true&w=majority") // connection to the cluster in the database that we created
     .then((result) =>{ console.log("connected to db");//connect to database before listen
                         app.listen(3001, () => {

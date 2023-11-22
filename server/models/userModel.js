@@ -18,7 +18,7 @@ const UserSchema = new Schema({
     },
     password:{
         type:String,
-        require:true
+        required:true
     },
     address:{
         type:String,
@@ -32,12 +32,20 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
+    isBarber:{
+        type: String,
+        required: true
+    },
+    shop_ID:{
+        type:String,
+        required: false
+    }
 },{timestamps:true});
 
 //static signup method
 
 UserSchema.statics.signup = async function(body){
-    const {firstName,lastName,email,password,address,phoneNumber} = body;
+    const {firstName,lastName,email,password,address,phoneNumber,isBarber,shop_ID} = body;
     const exists =await this.findOne({email})
     if (exists){
         throw Error('Email already in use')
@@ -46,10 +54,12 @@ UserSchema.statics.signup = async function(body){
     const salt = await bcrypt.genSalt(10)// the bigger the number the more secure it is
     const hash = await bcrypt.hash(password,salt)
 
-    const user = await this.create({firstName,lastName,email,password:hash,address,phoneNumber})
+    const user = await this.create({firstName,lastName,email,password:hash,address,phoneNumber,isBarber,shop_ID})
 
     return user
 }
+
+
 UserSchema.statics.login = async function(email,password){
     if(!email || !password){
         throw Error ('All fields must be filled')
