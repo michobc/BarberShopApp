@@ -11,6 +11,9 @@ import {
     RadioGroup,
     FormControl,
     FormControlLabel, } from '@mui/material';
+
+import { DatePicker } from '@mui/lab';
+import { TextField } from '@mui/material';
 import isAuthenticated from '../../UserAuth';
 import NavBarSign from '../NavBarSign';
 import Navbar from '../Navbar'
@@ -46,6 +49,11 @@ const generateTimeSlots = () => {
 const ShopProfile = ({ shop }) => {
     const [selectedTime, setSelectedTime] = useState('');
     const [selectedOption, setSelectedOption] = useState('');
+    const [selectedDate, setSelectedDate] = useState(null);
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
 
     const handleTimeChange = (event) => {
         setSelectedTime(event.target.value);
@@ -84,6 +92,17 @@ const ShopProfile = ({ shop }) => {
 
           <Typography variant="h2" color="text.secondary" sx={{ marginBottom: 2, fontSize: 30, color: 'black' }}>
             BOOK APPOINTMENT
+          </Typography>
+
+          <Typography variant="body2" color="textSecondary" sx={{ marginBottom: 2 }}>
+              Select Date:
+              <DatePicker
+                  label="Date"
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  renderInput={(params) => <TextField {...params} />}
+                  style={{ marginLeft: '10px' }}
+              />
           </Typography>
 
           <Typography variant="body2" color="textSecondary" sx={{ marginBottom: 2 }}>

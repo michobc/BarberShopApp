@@ -12,6 +12,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { useLogout } from '../../hooks/useLogout';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,6 +58,10 @@ export default function PrimarySearchAppBar() {
   const [input, setInput] = React.useState('');
   const [results, setResults] = React.useState([]);
 
+  const { logout }  = useLogout()
+  const handleClick = () => {
+    logout()
+  }
   const fetchData = (value) => {
     fetch("http://localhost:3001/api/shop")
     .then((response) => response.json())
@@ -214,6 +219,9 @@ export default function PrimarySearchAppBar() {
           </ListItem>
           <ListItem button onClick={() => window.location.href = '/About'}>
             <ListItemText primary="About" />
+          </ListItem>
+          <ListItem button onClick={handleClick}>
+            <ListItemText primary="Log Out" />
           </ListItem>
         </List>
       </Drawer>

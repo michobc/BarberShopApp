@@ -36,7 +36,7 @@ export default function SignUp() {
     let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
     setIsUserSignedIn(isAuthenticated)
   }, [user]);
-  
+
   const [firsName,setFirstName] = useState('')
   const [lastName,setLastName] = useState('')
   const [email,setEmail] = useState('')
@@ -44,7 +44,7 @@ export default function SignUp() {
   const [address,setAddress] = useState('')
   const [dob,setDob] = useState('')
   const [phoneNumber,setPhoneNumber] = useState('')
-  const [isBarber,setIsBarber] = useState('')
+  const [isBarber,setIsBarber] = useState('1')
 
   const {signup,error,isLoading} = useSignup()
   const handleSubmit = async (event) => {
@@ -55,10 +55,8 @@ export default function SignUp() {
 
   if(isUserSignedIn!=0){
     return <Navigate to="/" replace />
-  } else(
-    <>
-
-    <ThemeProvider theme={defaultTheme}>
+  }else{ 
+    return <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
@@ -211,6 +209,5 @@ export default function SignUp() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
-    </>
-  );
+  };
 }

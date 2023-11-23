@@ -13,6 +13,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { useLogout } from '../../hooks/useLogout';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -74,6 +75,11 @@ export default function PrimarySearchAppBar() {
   const handleChange = (value) =>{
     setInput(value);
     fetchData(value);
+  }
+
+  const { logout }  = useLogout()
+  const handleClick = () => {
+    logout()
   }
 
   const toggleDrawer = (open) => (event) => {
@@ -236,6 +242,9 @@ export default function PrimarySearchAppBar() {
           </ListItem>
           <ListItem button onClick={() => window.location.href = '/About'}>
             <ListItemText primary="About" />
+          </ListItem>
+          <ListItem button onClick={handleClick}>
+            <ListItemText primary="Log Out" />
           </ListItem>
         </List>
       </Drawer>

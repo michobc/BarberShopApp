@@ -16,6 +16,8 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useState } from 'react';
+import { useLogin } from '../../hooks/useLogin'
+import { Navigate } from 'react-router';
 const theme = createTheme();
 
 const boxStyle = {
@@ -56,34 +58,19 @@ const submitButtonStyle = {
 };
 
 export default function SignIn() {
-  const {dispatch} = useAuthContext()
   const [email,setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const {user} = useAuthContext();
+
+  const {login} = useLogin()
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch('http://localhost:3001/api/user/login',{
-      method:'POST',
-      body: JSON.stringify({email,password}),
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    })
-    const json = await response.json()
-    if (!response.ok){
-      console.log(json.error);
-    }
-    console.log(json);
-    if (response.ok){
-      //save the user to local storage
-      localStorage.setItem('user',JSON.stringify(json))
-
-      //update the auth context
-      dispatch({type:'LOGIN',payload :json})
-      
-      console.log("loggedin")
-    }
+    await login(email, password)
   };
 
+  if (user!=null){
+    return <Navigate to='/' replace />
+  }else{
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm">
@@ -153,5 +140,5 @@ export default function SignIn() {
         </Box>
       </Container>
     </ThemeProvider>
-  );
+  )};
 }

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Navigate } from 'react-router';
+import { useState,useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,8 +16,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import {useState} from 'react'
-import { useAuthContext,dispatch } from '../../hooks/useAuthContext';
+import { useSignup } from '../../hooks/useSignup';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 function Copyright(props) {
   return (
@@ -27,110 +29,34 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignUpBarber() {
-    const {dispatch} = useAuthContext()
-    const [userData,setUserData] = useState({})
-    
-    const [errors, setErrors] = React.useState({});
-    const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(true);
+export default function SignUp() {
+  const {user} = useAuthContext()
+  const [isUserSignedIn,setIsUserSignedIn] = useState(0);
+  useEffect(() => {
+    let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
+    setIsUserSignedIn(isAuthenticated)
+  }, [user]);
 
-    const validateEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-    
-    const validatePassword = (password) => {
-        const passwordMinLength = 8;
-        return password.length >= passwordMinLength;
-    };
-  
-    const handleInputChange = (event) => {
-      const { name, value } = event.target;
-  
-      // Validate input fields on change and update the errors state
-      if (name === 'email') {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          email: !validateEmail(value) ? 'Please enter a valid email address' : '',
-        }));
-      } else if (name === 'password') {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          password: !validatePassword(value) ? 'Password must be at least 8 characters long' : '',
-        }));
-      }
-    };
-  
-    React.useEffect(() => {
-      // Check if email and password errors are empty to enable/disable the submit button
-      setIsSubmitDisabled(!!errors.email || !!errors.password);
-    }, [errors.email, errors.password]);
-  
-    const handleSubmit = async (event) => {
-      event.preventDefault();
+  const [firsName,setFirstName] = useState('')
+  const [lastName,setLastName] = useState('')
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
+  const [address,setAddress] = useState('')
+  const [dob,setDob] = useState('')
+  const [phoneNumber,setPhoneNumber] = useState('')
+  const [isBarber,setIsBarber] = useState('2')
 
-      const data = new FormData(event.currentTarget);
-      await setUserData({
-        firstName: data.get('firstName'),
-        lastName: data.get('lastName'),
-        email: data.get('email'),
-        password: data.get('password'),
-        address: data.get('address'),
-        dob: data.get('dob'),
-        phoneNumber: data.get('phoneNumber'),
-        isBarber:'1'
-      });
-      const { firstName, lastName, email, password, address, dob, phoneNumber } = Object.fromEntries(data);
-  
-      const isEmailValid = validateEmail(email);
-      const isPasswordValid = validatePassword(password);
-      
-      if (!isEmailValid) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          email: 'Please enter a valid email address',
-        }));
-        return;
-      }
-  
-      if (!isPasswordValid) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          password: 'Password must be at least 8 characters long',
-        }));
-        return;
-      }
-  
-      // Reset any previous errors if validations pass
-      setErrors({});
-  
-      // Continue with form submission if validations succeed
-      const response = await fetch('http://localhost:3001/api/user/signup',{
-        method:'POST',
-        body: JSON.stringify(userData),
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      })
-      
-      const json = await response.json()
-      if (!response.ok){
-        console.log(json.error);
-      }
-      console.log(json);
-      if (response.ok){
-        //save the user to local storage
-        localStorage.setItem('user',JSON.stringify(json))
-  
-        //update the auth context
-        dispatch({type:'LOGIN',payload :json})
-        
-        console.log("added to database")
-      }
-    };
+  const {signup,error,isLoading} = useSignup()
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  return (
-    <ThemeProvider theme={defaultTheme}>
+    await signup(email,password)
+  };
+
+  if(isUserSignedIn!=0){
+    return <Navigate to="/" replace />
+  }else{ 
+    return <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
@@ -156,7 +82,7 @@ export default function SignUpBarber() {
             <IconButton sx={{position: 'relative',
                             top: 0,
                             left: '200px',}} 
-                            onClick={() => window.location.href = '/PickUser'}>
+                            onClick={() => window.location.href = '/'}>
               <CloseIcon />
             </IconButton>
 
@@ -196,22 +122,18 @@ export default function SignUpBarber() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField
-                    error={!!errors.email}
-                    helperText={errors.email}
+                  <TextField
                     required
                     fullWidth
                     id="email"
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    onChange={handleInputChange}
-                    />
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField
-                    error={!!errors.password}
-                    helperText={errors.password}
+                  <TextField
                     required
                     fullWidth
                     name="password"
@@ -219,8 +141,8 @@ export default function SignUpBarber() {
                     type="password"
                     id="password"
                     autoComplete="new-password"
-                    onChange={handleInputChange}
-                    />
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -233,13 +155,12 @@ export default function SignUpBarber() {
                   <TextField
                     fullWidth
                     name="dob"
-                    label="Date of Birth"
+                    label="Date of Birth (optional)"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
-                    required
                     name="phoneNumber"
                     label="Phone Number"
                   />
@@ -255,7 +176,6 @@ export default function SignUpBarber() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                disabled={isSubmitDisabled}
                 sx={{
                   mt: 3,
                   mb: 2,
@@ -289,5 +209,5 @@ export default function SignUpBarber() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
-  );
+  };
 }
