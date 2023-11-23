@@ -29,12 +29,74 @@ const shop = {
   telephone: '01/011111',
 };
 
+const appointments=[
+  {
+    shopName:'chez faysal',
+    date:'24-11-2023',
+    timeSlot:'7:00',
+    price:'25$',
+  },
+
+  {
+    shopName:'chez mhanna',
+    date:'5-12-2023',
+    timeSlot:'10:20',
+    price:'30$',
+  },
+
+  {
+    shopName:'coiffeur',
+    date:'12-01-2024',
+    timeSlot:'5:00',
+    price:'35$',
+  },
+
+  {
+    shopName:'coiffeur',
+    date:'12-01-2024',
+    timeSlot:'5:00',
+    price:'35$',
+  },
+
+  {
+    shopName:'coiffeur',
+    date:'12-01-2024',
+    timeSlot:'5:00',
+    price:'35$',
+  },
+
+
+];
+
+const pastappointments=[
+  {
+    shopName:'chez maha',
+    date:'24-8-2023',
+    timeSlot:'15:00',
+    price:'35$',
+  },
+
+  {
+    shopName:'chez marc',
+    date:'6-6-2023',
+    timeSlot:'18:20',
+    price:'15$',
+  },
+
+  {
+    shopName:'bestbarber',
+    date:'12-12-2022',
+    timeSlot:'11:00',
+    price:'40$',
+  },
+];
+
 function Routing(){
   return (
     <>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path='/Profile' element={<Profile user={user}/>}/>
+      <Route path='/Profile' element={<Profile user={user} appointments={appointments} pastappointments={pastappointments}/>}/>
       <Route path='/SignUp' element={<SignUp/>}/>
       <Route path='/SignIn' element={<SignIn/>}/>
       <Route path='/SignUpBarber' element={<SignUpBarber/>}/>
