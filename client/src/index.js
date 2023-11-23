@@ -16,14 +16,16 @@
 // // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from './context/AuthContext';
 
+
 ReactDOM.render(
+
   <AuthContextProvider>
     <BrowserRouter>
       <App />

@@ -9,6 +9,8 @@ import ImagesHome from '../ImagesHome'
 import Footer from '../Footer';
 import logo from '../../logo.jpg';
 import './index.css';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useState,useEffect } from 'react';
 
 function Home() {
   // Define the slide-up animation
@@ -17,9 +19,14 @@ function Home() {
     to: { opacity: 1, transform: 'translateY(0)' },
     config: { duration: 1000 }, // Adjust the duration as needed
   });
-
-  let navbarComponent;
-  const isUserSignedIn = isAuthenticated;
+  const {user} = useAuthContext()
+  const [isUserSignedIn,setIsUserSignedIn] = useState(0);
+  useEffect(() => {
+    let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
+    setIsUserSignedIn(isAuthenticated)
+  }, [user]);
+  
+  let navbarComponent
   if (isUserSignedIn == 0) {
     navbarComponent = <NavBarSign />;
   } else if (isUserSignedIn == 1) {

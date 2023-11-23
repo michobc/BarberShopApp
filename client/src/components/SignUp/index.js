@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { Navigate } from 'react-router';
+import { useState,useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,6 +16,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { useSignup } from '../../hooks/useSignup';
 import { useAuthContext } from '../../hooks/useAuthContext';
 
 function Copyright(props) {
@@ -28,47 +30,34 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const {dispatch} = useAuthContext()
-  const [userData,setUserData] = useState({})
+  const {user} = useAuthContext()
+  const [isUserSignedIn,setIsUserSignedIn] = useState(0);
+  useEffect(() => {
+    let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
+    setIsUserSignedIn(isAuthenticated)
+  }, [user]);
+  
+  const [firsName,setFirstName] = useState('')
+  const [lastName,setLastName] = useState('')
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
+  const [address,setAddress] = useState('')
+  const [dob,setDob] = useState('')
+  const [phoneNumber,setPhoneNumber] = useState('')
+  const [isBarber,setIsBarber] = useState('')
+
+  const {signup,error,isLoading} = useSignup()
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const data = new FormData(event.currentTarget);
-    setUserData({
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      email: data.get('email'),
-      password: data.get('password'),
-      address: data.get('address'),
-      dob: data.get('dob'),
-      phoneNumber: data.get('phoneNumber'),
-    });
-    console.log(userData)
-    const response = await fetch('http://localhost:3001/api/user/signup',{
-      method:'POST',
-      body: JSON.stringify(userData),
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    })
-    
-    const json = await response.json()
-    if (!response.ok){
-      console.log(json.error);
-    }
-    console.log(json);
-    if (response.ok){
-      //save the user to local storage
-      localStorage.setItem('user',JSON.stringify(json))
-
-      //update the auth context
-      dispatch({type:'LOGIN',payload :json})
-      
-      console.log("added to database")
-    }
+    await signup(email,password)
   };
 
-  return (
+  if(isUserSignedIn!=0){
+    return <Navigate to="/" replace />
+  } else(
+    <>
+
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="sm">
         <CssBaseline />
@@ -142,6 +131,7 @@ export default function SignUp() {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -153,6 +143,7 @@ export default function SignUp() {
                     type="password"
                     id="password"
                     autoComplete="new-password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -220,5 +211,6 @@ export default function SignUp() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
+    </>
   );
 }

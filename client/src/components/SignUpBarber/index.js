@@ -14,6 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import {useState} from 'react'
+import { useAuthContext,dispatch } from '../../hooks/useAuthContext';
 
 function Copyright(props) {
   return (
@@ -26,6 +28,9 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUpBarber() {
+    const {dispatch} = useAuthContext()
+    const [userData,setUserData] = useState({})
+    
     const [errors, setErrors] = React.useState({});
     const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(true);
 
@@ -61,14 +66,25 @@ export default function SignUpBarber() {
       setIsSubmitDisabled(!!errors.email || !!errors.password);
     }, [errors.email, errors.password]);
   
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       event.preventDefault();
+
       const data = new FormData(event.currentTarget);
+      await setUserData({
+        firstName: data.get('firstName'),
+        lastName: data.get('lastName'),
+        email: data.get('email'),
+        password: data.get('password'),
+        address: data.get('address'),
+        dob: data.get('dob'),
+        phoneNumber: data.get('phoneNumber'),
+        isBarber:'1'
+      });
       const { firstName, lastName, email, password, address, dob, phoneNumber } = Object.fromEntries(data);
   
       const isEmailValid = validateEmail(email);
       const isPasswordValid = validatePassword(password);
-  
+      
       if (!isEmailValid) {
         setErrors((prevErrors) => ({
           ...prevErrors,
@@ -89,15 +105,28 @@ export default function SignUpBarber() {
       setErrors({});
   
       // Continue with form submission if validations succeed
-      console.log({
-        firstName,
-        lastName,
-        email,
-        password,
-        address,
-        dob,
-        phoneNumber,
-      });
+      const response = await fetch('http://localhost:3001/api/user/signup',{
+        method:'POST',
+        body: JSON.stringify(userData),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      })
+      
+      const json = await response.json()
+      if (!response.ok){
+        console.log(json.error);
+      }
+      console.log(json);
+      if (response.ok){
+        //save the user to local storage
+        localStorage.setItem('user',JSON.stringify(json))
+  
+        //update the auth context
+        dispatch({type:'LOGIN',payload :json})
+        
+        console.log("added to database")
+      }
     };
 
   return (
