@@ -23,6 +23,7 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 import {Button} from '@mui/material';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import { useState } from 'react';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="black" align="center" {...props}>
@@ -86,7 +87,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
-  const {user}= useAuthContext()
+  const [open, setOpen] = useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
