@@ -11,54 +11,18 @@ import NavbarBarber from '../NavbarBarber'
 import Footer from '../Footer'
 import BreadCrumbShops from '../BreadCrumbs/shops';
 import { useAuthContext } from '../../hooks/useAuthContext';
-const steps = [
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
-];
 
 
 
 export default function Shops() {
+  const [steps,setState] = useState([])
   useEffect(() => {
     const cards = document.querySelectorAll('.slide-up-card');
     cards.forEach((card) => {
       card.style.transform = 'translateY(0)';
     });
   }, []);
+
   const {user} = useAuthContext()
   const [isUserSignedIn,setIsUserSignedIn] = useState(0);
   useEffect(() => {
@@ -66,6 +30,19 @@ export default function Shops() {
     setIsUserSignedIn(isAuthenticated)
   }, [user]);
 
+  useEffect(()=>{
+    const handleFetch=async () =>{
+      const temp = await fetch ('/api/shop/')
+      const response = await temp.json()
+      if (response){
+        setState(response)
+      }
+      
+      
+    }
+    handleFetch();
+  },[user])
+  
   let navbarComponent;
   if (isUserSignedIn == 0) {
     navbarComponent = <NavBarSign />;
@@ -101,7 +78,7 @@ export default function Shops() {
                 style={{ position: 'relative' }}
                 >
                 <img
-                    src={step.image}
+                    src={'https://bondsbarbershop.co.uk/images/home-hero.jpg'}
                     alt={step.name}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', }}
                 />
@@ -114,7 +91,7 @@ export default function Shops() {
                   Address: {step.address}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Telephone: {step.telephone}
+                    Telephone: {step.phoneNumber}
                 </Typography>
               </CardContent>
             </CardActionArea>

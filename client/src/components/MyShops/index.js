@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -12,6 +12,8 @@ import Footer from '../Footer'
 import isAuthenticated from '../../UserAuth';
 import Dashboard from '../Dashboard';
 import BreadCrumbMyShops from '../BreadCrumbs/myshops';
+import { useAuthContext } from '../../hooks/useAuthContext';
+
 
 const steps = [
   {
@@ -28,17 +30,39 @@ const steps = [
   },
 ];
 
-let navbarComponent;
-const isUserSignedIn = isAuthenticated;
-if (isUserSignedIn == 0) {
-  navbarComponent = <NavBarSign />;
-} else if (isUserSignedIn == 1) {
-  navbarComponent = <Navbar />;
-} else{
-  navbarComponent = <NavbarBarber />;
-}
 
 export default function MyShops() {
+  const [steps,setState] = useState([])
+  const {user} = useAuthContext()
+  const [isUserSignedIn,setIsUserSignedIn] = useState(0);
+  useEffect( () => {
+    let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
+    setIsUserSignedIn(isAuthenticated)
+   }, [user]);
+  useEffect(()=>{
+    const handleFetch=async () =>{
+      if(user){
+      const temp = await fetch ('/api/shop/myshops/'+user.user._id)
+      const response = await temp.json()
+      if (response){
+        setState(response)
+      }
+      }
+      
+    }
+    handleFetch();
+  },[user])
+  console.log(steps);
+ 
+  let navbarComponent;
+  if (isUserSignedIn == 0) {
+    navbarComponent = <NavBarSign />;
+  } else if (isUserSignedIn == 1) {
+    navbarComponent = <Navbar />;
+  } else{
+    navbarComponent = <NavbarBarber />;
+  }
+
   useEffect(() => {
     const cards = document.querySelectorAll('.slide-up-card');
     cards.forEach((card) => {
@@ -72,7 +96,7 @@ export default function MyShops() {
                 style={{ position: 'relative' }}
                 >
                 <img
-                    src={step.image}
+                    src={'https://bondsbarbershop.co.uk/images/home-hero.jpg'}
                     alt={step.name}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', }}
                 />
@@ -85,7 +109,7 @@ export default function MyShops() {
                   Address: {step.address}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Telephone: {step.telephone}
+                    Telephone: {step.phoneNumber}
                 </Typography>
               </CardContent>
             </CardActionArea>
