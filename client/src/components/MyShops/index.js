@@ -11,6 +11,7 @@ import NavbarBarber from '../NavbarBarber'
 import Footer from '../Footer'
 import isAuthenticated from '../../UserAuth';
 import Dashboard from '../Dashboard';
+import BreadCrumbMyShops from '../BreadCrumbs/myshops';
 
 const steps = [
   {
@@ -48,6 +49,7 @@ export default function MyShops() {
   return (
     <>
     {navbarComponent}
+    <BreadCrumbMyShops/>
     <section className='shopsCards' style={{ margin: '100px' }}>
     <Grid container spacing={3}>
       {steps.map((step, index) => (

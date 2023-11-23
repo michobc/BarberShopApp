@@ -3,12 +3,19 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* color: rgba(255, 255, 255, 0.5);  */
     color: rgba(255,255,255,0.8);
-    font-size: 200px;
+    font-size: 14vw;
     font-weight: bold;
-    /* filter: blur(0.9px);  */
     z-index:2;} 
+
+    @media screen and (max-width: 899px) {
+        .transparent-blur-number {
+          font-size: 26vw; /* Adjust for smaller screens */
+        }
+      }
+
+
+
     
 
 

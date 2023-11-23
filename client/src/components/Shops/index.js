@@ -10,6 +10,7 @@ import Navbar from '../Navbar'
 import NavbarBarber from '../NavbarBarber'
 import Footer from '../Footer'
 import isAuthenticated from '../../UserAuth';
+import BreadCrumbShops from '../BreadCrumbs/shops';
 
 const steps = [
   {
@@ -71,6 +72,7 @@ export default function Shops() {
   return (
     <>
     {navbarComponent}
+    <BreadCrumbShops/>
     <section className='shopsCards' style={{ margin: '100px' }}>
     <Grid container spacing={3}>
       {steps.map((step, index) => (

@@ -7,6 +7,7 @@ import NavbarBarber from '../NavbarBarber'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
 import Loader from 'react-loaders'
+import BreadCrumbAbout from '../BreadCrumbs/about';
 
 const teamMembers = [
   {
@@ -55,6 +56,7 @@ const About = () => {
   return (
     <>
     {navbarComponent}
+    <BreadCrumbAbout />
     <Loader type='ball-grid-pulse' />
       <animated.div style={fadeInProps}>
         <Container maxWidth="md" id="aboutUs" sx={{ backgroundColor: 'white', padding: 3, marginTop:10, borderRadius: 5,}}>

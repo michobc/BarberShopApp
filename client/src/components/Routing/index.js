@@ -12,6 +12,8 @@ import Dashboard from '../Dashboard';
 import Shops from '../Shops';
 import MyShops from '../MyShops';
 import ShopProfile from '../ShopProfile';
+import Appointments from '../Appointments';
+import CustomersList from '../CustomersList';
 
 const user = {
   firstName: 'John',
@@ -46,6 +48,8 @@ function Routing(){
       <Route path='/Shops' element={<Shops/>} />
       <Route path='/MyShops' element={<MyShops/>} />
       <Route path='/ShopProfile' element={<ShopProfile shop={shop}/>} />
+      <Route path='/Appointments' element={<Appointments/>} />
+      <Route path='/CustomersList' element={<CustomersList/>} />
     </Routes>
     </>
   );
