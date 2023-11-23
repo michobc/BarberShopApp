@@ -14,6 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -26,19 +28,28 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function CreateBarberShop() {
-    const handleSubmit = (event) => {
+  const {user} = useAuthContext()
+  const [barberShopName,setBarberShopName] = useState('')
+  const [address,setAddress]= useState('')
+  const [telephone,setTelphone]= useState('');
+
+    const handleSubmit = async (event) => {
       event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      const { barberShopName, address, telephone, barbers } = Object.fromEntries(data);
-  
-      // Continue with form submission if validations succeed
-      console.log({
-        barberShopName,
-        address,
-        telephone,
-        barbers,
+
+      const response = await fetch('/api/shop/create',{
+      method:'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ name: barberShopName, address: address, phoneNumber: telephone, owner_ID: user.user._id })
+
       });
-    };
+      if (!response.ok){
+        console.log('error')
+      }
+      if (response.ok){
+        console.log('added to database')
+      }
+      window.location.href='/'
+    }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -91,6 +102,7 @@ export default function CreateBarberShop() {
                     required
                     name="barberShopName"
                     label="BarberShop Name"
+                    onChange={(e)=>setBarberShopName(e.target.value)}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -99,6 +111,7 @@ export default function CreateBarberShop() {
                     fullWidth
                     name="address"
                     label="Address"
+                    onChange={(e)=>setAddress(e.target.value)}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -107,6 +120,7 @@ export default function CreateBarberShop() {
                     fullWidth
                     name="telephone"
                     label="Telephone"
+                    onChange={(e)=>setTelphone(e.target.value)}
                     />
                 </Grid>
               </Grid>

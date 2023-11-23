@@ -35,10 +35,24 @@ const getAllShops = async (req, res) => {
     }
 };
 
+//Get shops by owner
+// Get all shops
+const getMyShops = async (req, res) => {
+    const {id} = req.params
+    try {
+        const shops = await Shop.find({owner_ID : id});
+        res.status(200).json(shops);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
 
 
 module.exports = {
     getOneShop,
     createShop,
-    getAllShops
+    getAllShops,
+    getMyShops
 }
