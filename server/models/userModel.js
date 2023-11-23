@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     firstName:{
         type: String,
-        required: true,
+        required: false,
     },
 
     lastName:{
         type: String,
-        required: true,
+        required: false,
     },
     email:{
         type:String,
@@ -22,7 +22,7 @@ const UserSchema = new Schema({
     },
     address:{
         type:String,
-        required:true
+        required:false
     },
     dob:{
         type:String,
@@ -30,11 +30,11 @@ const UserSchema = new Schema({
     },
     phoneNumber:{
         type: String,
-        required: true,
+        required: false,
     },
     isBarber:{
         type: String,
-        required: true
+        required: false
     },
     shop_ID:{
         type:String,
@@ -45,7 +45,7 @@ const UserSchema = new Schema({
 //static signup method
 
 UserSchema.statics.signup = async function(body){
-    const {firstName,lastName,email,password,address,phoneNumber,isBarber,shop_ID} = body;
+    const {email,password} = body//,email,password,address,phoneNumber,isBarber,shop_ID} = body;
     const exists =await this.findOne({email})
     if (exists){
         throw Error('Email already in use')
@@ -54,7 +54,7 @@ UserSchema.statics.signup = async function(body){
     const salt = await bcrypt.genSalt(10)// the bigger the number the more secure it is
     const hash = await bcrypt.hash(password,salt)
 
-    const user = await this.create({firstName,lastName,email,password:hash,address,phoneNumber,isBarber,shop_ID})
+    const user = await this.create({email,password:hash})
 
     return user
 }
