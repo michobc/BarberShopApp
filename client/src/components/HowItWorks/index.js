@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import Grid from '@mui/material/Grid';
-import PropTypes from 'prop-types';
-import isAuthenticated from '../../UserAuth';
+import { useAuthContext } from '../../hooks/useAuthContext';
 import './index.css';
 
 
@@ -94,8 +93,14 @@ export default function ScheduleProcessCards() {
     });
   }, []);
 
+  const {user} = useAuthContext()
+  const [isUserSignedIn,setIsUserSignedIn] = useState(0);
+  useEffect(() => {
+    let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
+    setIsUserSignedIn(isAuthenticated)
+  }, [user]);
+  
 
-  const isUserSignedIn = isAuthenticated;
 
   return (
     

@@ -1,12 +1,11 @@
-import { useState } from "react";
-import axios from 'axios'
-import isAuthenticated from '../../UserAuth'
+import { useState ,useEffect} from "react";
 import { TextField, Button, Typography, Box } from "@mui/material";
 import NavBarSign from '../NavBarSign'
 import NavbarBarber from '../NavbarBarber'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
 import BreadCrumbContact from "../BreadCrumbs/contact";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -21,9 +20,15 @@ export default function Contact() {
     //   console.log(e);
     // }
   };
-
+  const {user} = useAuthContext()
+  const [isUserSignedIn,setIsUserSignedIn] = useState(0);
+  useEffect(() => {
+    let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
+    setIsUserSignedIn(isAuthenticated)
+  }, [user]);
+  
   let navbarComponent;
-  const isUserSignedIn = isAuthenticated;
+
   if (isUserSignedIn == 0) {
     navbarComponent = <NavBarSign />;
   } else if (isUserSignedIn == 1) {

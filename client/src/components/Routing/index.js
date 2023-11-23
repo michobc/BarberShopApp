@@ -36,7 +36,7 @@ function Routing(){
     <>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path='/Profile' element={<Profile user={user}/>}/>
+      <Route path='/Profile' element={<Profile />}/>
       <Route path='/SignUp' element={<SignUp/>}/>
       <Route path='/SignIn' element={<SignIn/>}/>
       <Route path='/SignUpBarber' element={<SignUpBarber/>}/>

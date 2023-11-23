@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSpring, animated } from 'react-spring';
-import isAuthenticated from '../../UserAuth';
 import NavBarSign from '../NavBarSign';
 import Navbar from '../Navbar'
 import NavbarBarber from '../NavbarBarber'
@@ -20,6 +19,8 @@ function Home() {
     to: { opacity: 1, transform: 'translateY(0)' },
     config: { duration: 1000 }, // Adjust the duration as needed
   });
+
+
   const {user} = useAuthContext()
   const [isUserSignedIn,setIsUserSignedIn] = useState(0);
   useEffect(() => {

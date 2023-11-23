@@ -3,7 +3,6 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -14,6 +13,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useLogout } from '../../hooks/useLogout';
+import { useAuthContext } from '../../hooks/useAuthContext';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,10 +56,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  const {user} = useAuthContext();
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   const [input, setInput] = React.useState('');
   const [results, setResults] = React.useState([]);
-
+  //search bar
   const fetchData = (value) => {
     fetch("http://localhost:3001/api/shop")
     .then((response) => response.json())
@@ -71,6 +73,8 @@ export default function PrimarySearchAppBar() {
       console.log(results)
     });
   }
+  
+
 
   const handleChange = (value) =>{
     setInput(value);
@@ -79,6 +83,7 @@ export default function PrimarySearchAppBar() {
 
   const { logout }  = useLogout()
   const handleClick = () => {
+    window.location.href='/'
     logout()
   }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -9,9 +9,8 @@ import NavBarSign from '../NavBarSign';
 import Navbar from '../Navbar'
 import NavbarBarber from '../NavbarBarber'
 import Footer from '../Footer'
-import isAuthenticated from '../../UserAuth';
 import BreadCrumbShops from '../BreadCrumbs/shops';
-
+import { useAuthContext } from '../../hooks/useAuthContext';
 const steps = [
   {
     name: 'chez faysal',
@@ -51,15 +50,7 @@ const steps = [
   },
 ];
 
-let navbarComponent;
-const isUserSignedIn = isAuthenticated;
-if (isUserSignedIn == 0) {
-  navbarComponent = <NavBarSign />;
-} else if (isUserSignedIn == 1) {
-  navbarComponent = <Navbar />;
-} else{
-  navbarComponent = <NavbarBarber />;
-}
+
 
 export default function Shops() {
   useEffect(() => {
@@ -68,6 +59,21 @@ export default function Shops() {
       card.style.transform = 'translateY(0)';
     });
   }, []);
+  const {user} = useAuthContext()
+  const [isUserSignedIn,setIsUserSignedIn] = useState(0);
+  useEffect(() => {
+    let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
+    setIsUserSignedIn(isAuthenticated)
+  }, [user]);
+
+  let navbarComponent;
+  if (isUserSignedIn == 0) {
+    navbarComponent = <NavBarSign />;
+  } else if (isUserSignedIn == 1) {
+    navbarComponent = <Navbar />;
+  } else{
+    navbarComponent = <NavbarBarber />;
+  }
 
   return (
     <>

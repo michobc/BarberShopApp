@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { useAuthContext } from '../../hooks/useAuthContext';
 import { 
     Card, 
     CardContent, 
@@ -20,21 +21,14 @@ import Navbar from '../Navbar'
 import NavbarBarber from '../NavbarBarber'
 import Footer from '../Footer'
 
-let navbarComponent;
-const isUserSignedIn = isAuthenticated;
-if (isUserSignedIn == 0) {
-  navbarComponent = <NavBarSign />;
-} else if (isUserSignedIn == 1) {
-  navbarComponent = <Navbar />;
-} else{
-  navbarComponent = <NavbarBarber />;
-}
+
 
 const generateTimeSlots = () => {
     const startTime = 7 * 60; // 7 am in minutes
     const endTime = 17 * 60; // 5 pm in minutes
     const interval = 20; // 20 minutes interval
     const timeSlots = [];
+
   
     for (let i = startTime; i < endTime; i += interval) {
       const hours = Math.floor(i / 60);
@@ -64,7 +58,23 @@ const ShopProfile = ({ shop }) => {
     };
 
     const timeSlots = generateTimeSlots();
+    const {user} = useAuthContext()
+    const [isUserSignedIn,setIsUserSignedIn] = useState(0);
+    useEffect(() => {
+      let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
+      setIsUserSignedIn(isAuthenticated)
+    }, [user]);
 
+    let navbarComponent;
+
+    if (isUserSignedIn == 0) {
+      navbarComponent = <NavBarSign />;
+    } else if (isUserSignedIn == 1) {
+      navbarComponent = <Navbar />;
+    } else{
+      navbarComponent = <NavbarBarber />;
+    }
+  
   return (
     <>
     {navbarComponent}

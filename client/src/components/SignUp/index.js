@@ -37,7 +37,7 @@ export default function SignUp() {
     setIsUserSignedIn(isAuthenticated)
   }, [user]);
 
-  const [firsName,setFirstName] = useState('')
+  const [firstName,setFirstName] = useState('')
   const [lastName,setLastName] = useState('')
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
@@ -45,12 +45,12 @@ export default function SignUp() {
   const [dob,setDob] = useState('')
   const [phoneNumber,setPhoneNumber] = useState('')
   const [isBarber,setIsBarber] = useState('1')
-
+  
   const {signup,error,isLoading} = useSignup()
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await signup(email,password)
+    await signup(firstName,lastName,email, password,address,dob,phoneNumber,isBarber)
   };
 
   if(isUserSignedIn!=0){
@@ -109,6 +109,7 @@ export default function SignUp() {
                     id="firstName"
                     label="First Name"
                     autoFocus
+                    onChange={(e)=>setFirstName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -119,6 +120,7 @@ export default function SignUp() {
                     label="Last Name"
                     name="lastName"
                     autoComplete="family-name"
+                    onChange={(e)=>setLastName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -149,6 +151,7 @@ export default function SignUp() {
                     fullWidth
                     name="address"
                     label="Address"
+                    onChange={(e)=>setAddress(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -156,6 +159,7 @@ export default function SignUp() {
                     fullWidth
                     name="dob"
                     label="Date of Birth (optional)"
+                    onChange={(e)=>setDob(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -163,6 +167,7 @@ export default function SignUp() {
                     fullWidth
                     name="phoneNumber"
                     label="Phone Number"
+                    onChange={(e)=>setPhoneNumber(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>

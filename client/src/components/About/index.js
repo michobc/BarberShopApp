@@ -8,6 +8,7 @@ import Navbar from '../Navbar'
 import Footer from '../Footer'
 import Loader from 'react-loaders'
 import BreadCrumbAbout from '../BreadCrumbs/about';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const teamMembers = [
   {
@@ -36,8 +37,24 @@ const teamMembers = [
   }
 ];
 
+const About = () => {
+  const fadeInProps = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: config.molasses, // Adjust the animation configuration as needed
+  });
+
+
+
+  const {user} = useAuthContext()
+  const [isUserSignedIn,setIsUserSignedIn] = useState(0);
+  useEffect(() => {
+    let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
+    setIsUserSignedIn(isAuthenticated)
+  }, [user]);
+  
 let navbarComponent;
-const isUserSignedIn = isAuthenticated;
+
 if (isUserSignedIn == 0) {
   navbarComponent = <NavBarSign />;
 } else if (isUserSignedIn == 1) {
@@ -46,13 +63,7 @@ if (isUserSignedIn == 0) {
   navbarComponent = <NavbarBarber />;
 }
 
-const About = () => {
-  const fadeInProps = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    config: config.molasses, // Adjust the animation configuration as needed
-  });
-
+  
   return (
     <>
     {navbarComponent}
