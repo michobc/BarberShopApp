@@ -3,7 +3,6 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -12,7 +11,6 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import PickUser from '../PickUser';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,6 +53,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function PrimarySearchAppBar() {
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const [input, setInput] = React.useState('');
+  const [results, setResults] = React.useState([]);
+
+  const fetchData = (value) => {
+    fetch("http://localhost:3001/api/shop")
+    .then((response) => response.json())
+    .then((json) => {
+      const results = json.filter((shop) => {
+        //if the value is empty we don't render anything
+        return value && shop && shop.name && shop.name.toLowerCase().includes(value) 
+      })
+      setResults(results)
+      console.log(results)
+    });
+  }
+
+  const handleChange = (value) =>{
+    setInput(value);
+    fetchData(value);
+  }
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -65,7 +83,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: 'black' }}>
+      <AppBar position="sticky" sx={{ backgroundColor: 'black' }}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -87,11 +105,30 @@ export default function PrimarySearchAppBar() {
           </IconButton>
           <Search>
             <SearchIconWrapper></SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search Barber…"
+            <StyledInputBase value={input} onChange={(e) => handleChange(e.target.value)}
+              placeholder="Search BarberShop…"
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+          { input && results.length!=0 && <div className='results-list' style={{
+            position: 'absolute',
+            top: '100%',
+            left: '19%',
+            zIndex: 999,
+            backgroundColor:'white',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', // Adding a subtle shadow
+            borderRadius: '4px',
+            width: '100%',
+            maxWidth: '400px', // Limiting the width
+            padding: '8px 0', // Adding padding
+          }}>
+            {
+              results.map((result, id) => {
+                return <div key={id} style={{ padding: '8px', cursor: 'pointer', color:'black' }}
+                onClick={() => setInput(result.name)}>{result.name}</div>
+              })
+            }
+          </div>}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Button

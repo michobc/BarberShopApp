@@ -6,6 +6,7 @@ import NavBarSign from '../NavBarSign'
 import NavbarBarber from '../NavbarBarber'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
+import BreadCrumbContact from "../BreadCrumbs/contact";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -34,6 +35,7 @@ export default function Contact() {
   return (
     <div>
       {navbarComponent}
+      <BreadCrumbContact/>
     <Box
       sx={{
         display: "flex",

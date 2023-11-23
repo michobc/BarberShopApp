@@ -17,17 +17,18 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import {Button} from '@mui/material';
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" color="black" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="/">
+        thebarber.com
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -91,10 +92,11 @@ export default function Dashboard() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <>
+    <ThemeProvider theme={defaultTheme} >
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" open={open} sx={{backgroundColor: 'red'}}>
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
@@ -113,19 +115,14 @@ export default function Dashboard() {
               <MenuIcon />
             </IconButton>
             <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
+              component="h2"
+              variant="h5"
+              color="white"
               noWrap
               sx={{ flexGrow: 1 }}
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -145,19 +142,20 @@ export default function Dashboard() {
           <List component="nav">
             {mainListItems}
             <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            {/* {secondaryListItems} */}
           </List>
         </Drawer>
         <Box
           component="main"
           sx={{
             backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
+              theme.palette.mode === 'dark'
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
+            backgroundColor : 'white'
           }}
         >
           <Toolbar />
@@ -196,10 +194,18 @@ export default function Dashboard() {
                 </Paper>
               </Grid>
             </Grid>
+            <br></br>
+            <Grid item xs={12} md={4} lg={3}>
+              <Button variant="contained" color='error' sx={{width: '100%', backgroundColor: 'red'}} onClick={() => {window.location.href = '/MyShops';}}>
+                Return
+              </Button>
+            </Grid>
+            <br></br>
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
       </Box>
     </ThemeProvider>
+    </>
   );
 }

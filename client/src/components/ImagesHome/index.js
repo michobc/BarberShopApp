@@ -2,8 +2,26 @@ import React, { useState } from 'react';
 import { Box, Typography, Pagination } from '@mui/material';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import { makeStyles } from '@mui/styles';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
+const useStyles = makeStyles((theme) => ({
+  paginationRoot: {
+    '& .MuiPaginationItem-root': {
+      '&:hover, &.Mui-selected': {
+        backgroundColor: 'red', // Transparent background on hover and selected
+      },
+    },
+    '& .MuiPaginationItem-outlined': {
+      borderColor: 'red', // Border color for the circles
+      '&.Mui-selected': {
+        backgroundColor: 'red', // Background color for the selected circle
+        color: 'red', // Text color for the selected circle
+      },
+    },
+  },
+}));
 
 const ImagesSlider = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -22,6 +40,7 @@ const ImagesSlider = () => {
     borderRadius: '0%' ,
     boxShadow: '20px 20px 20px rgba(0, 0, 0, 0.2)', // Add a box shadow
   };
+  const classes = useStyles();
 
   return (
     <Box>
@@ -48,7 +67,8 @@ const ImagesSlider = () => {
           count={totalSteps}
           page={activeStep}
           onChange={(event, newStep) => handleStepChange(newStep)}
-          color="secondary"
+          color='primary'
+          classes={{ root: classes.paginationRoot }}
           style={{ marginTop: '10px' }}
         />
       </Box>

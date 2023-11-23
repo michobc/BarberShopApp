@@ -25,9 +25,20 @@ const createShop = async (req,res) => {
     }
 }
 
+// Get all shops
+const getAllShops = async (req, res) => {
+    try {
+        const shops = await Shop.find({});
+        res.status(200).json(shops);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 
 
 module.exports = {
     getOneShop,
-    createShop
+    createShop,
+    getAllShops
 }

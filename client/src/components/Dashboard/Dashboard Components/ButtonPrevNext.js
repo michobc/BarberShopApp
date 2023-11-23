@@ -8,6 +8,7 @@ export default function DisableElevation() {
       disableElevation
       variant="contained"
       aria-label="Disabled elevation buttons"
+      color='inherit'
     >
       <Button>Previous</Button>
       <Button>Next</Button>

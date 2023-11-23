@@ -7,6 +7,7 @@ import isAuthenticated from '../../UserAuth';
 import Footer from '../Footer';
 import avatarpic from '../../pictures/avatarprofile.png';
 import './index.css';
+import BreadCrumbProfile from '../BreadCrumbs/profile';
 
 
 
@@ -25,6 +26,7 @@ const UserProfile = ({ user }) => {
   return (
     <>
     {navbarComponent}
+    <BreadCrumbProfile/>
     <Box className='allprofile'>
       <Card className='personalinfo' sx={{padding: 10, textAlign: 'center', boxShadow: 20, borderRadius: 12, backgroundColor: 'white' }}>
         <CardContent>
