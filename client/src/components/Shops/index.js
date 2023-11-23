@@ -114,7 +114,7 @@ export default function Shops() {
                   Address: {step.address}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Telephone: {step.telephone}
+                    Telephone: {step.phoneNumber}
                 </Typography>
               </CardContent>
             </CardActionArea>

@@ -10,8 +10,16 @@ import avatarpic from '../../pictures/avatarprofile.png';
 
 import './index.css';
 import { red } from '@mui/material/colors';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 
+const UserProfile = () => {
+  const {user} = useAuthContext()
+  const [isUserSignedIn,setIsUserSignedIn] = useState(0);
+  useEffect(() => {
+    let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
+    setIsUserSignedIn(isAuthenticated)
+  }, [user]);
 
   let navbarComponent;
   if (isUserSignedIn == 0) {
@@ -22,8 +30,17 @@ import { red } from '@mui/material/colors';
     navbarComponent = <NavbarBarber />;
   }
 
+  const [firstName,setFirstName] = useState('')
+  const [lastName,setLastName]= useState('')
+  const [email,setEmail] = useState('')
+  useEffect(() => {
+   if(user!=null){
+      setEmail(user.user.email)
+      setFirstName(user.user.firstName)
+      setLastName(user.user.lastName)
+    }
+  }, [user]);
 
-const UserProfile = ({ user, appointments, pastappointments }) => {
   return (
     <>
     {navbarComponent}

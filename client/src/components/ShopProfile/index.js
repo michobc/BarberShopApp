@@ -11,16 +11,19 @@ import {
     Radio,
     RadioGroup,
     FormControl,
-    FormControlLabel, } from '@mui/material';
+    FormControlLabel, 
+    Button
+} from '@mui/material';
+import { DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Alert from '@mui/material/Alert';
 
-import { DatePicker } from '@mui/lab';
-import { TextField } from '@mui/material';
-import isAuthenticated from '../../UserAuth';
 import NavBarSign from '../NavBarSign';
 import Navbar from '../Navbar'
 import NavbarBarber from '../NavbarBarber'
 import Footer from '../Footer'
-
 
 
 const generateTimeSlots = () => {
@@ -43,11 +46,19 @@ const generateTimeSlots = () => {
 const ShopProfile = ({ shop }) => {
     const [selectedTime, setSelectedTime] = useState('');
     const [selectedOption, setSelectedOption] = useState('');
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [cleared, setCleared] = useState(false);
+    const [calendarDate, setCalendarDate] = useState('');
 
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-    };
+    useEffect(() => {
+      if (cleared) {
+        const timeout = setTimeout(() => {
+          setCleared(false);
+        }, 1500);
+
+        return () => clearTimeout(timeout);
+      }
+      return () => {};
+    }, [cleared]);
 
     const handleTimeChange = (event) => {
         setSelectedTime(event.target.value);
@@ -57,7 +68,20 @@ const ShopProfile = ({ shop }) => {
         setSelectedOption(event.target.value);
     };
 
-    const timeSlots = generateTimeSlots();
+    const handleSubmit = () => {
+      // Perform action upon form submission
+      // For example, send data to backend or perform validation
+      console.log('Submitted!');
+      console.log(calendarDate);
+      // Add your logic here
+    };
+
+    const [timeSlots,setTimeSlot]=useState([])
+    useEffect(()=>{
+      setTimeSlot(generateTimeSlots())
+    },[])
+    
+
     const {user} = useAuthContext()
     const [isUserSignedIn,setIsUserSignedIn] = useState(0);
     useEffect(() => {
@@ -89,8 +113,7 @@ const ShopProfile = ({ shop }) => {
     >
       <Card sx={{ width: 1000, padding: 10, textAlign: 'center', boxShadow: 20, borderRadius: 2, backgroundColor: 'white' }}>
         <CardContent>
-          <Avatar alt='avatar' sx={{ width: 150, height: 150, marginBottom: 2 }} />
-          <Typography variant="h2" color="text.secondary" sx={{ marginBottom: 2, fontSize: 30, color: 'black' }}>
+          <Typography variant="h2" color="text.secondary" sx={{ marginBottom: 2, fontSize: 90, color: 'black' }}>
             {shop.name}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ marginBottom: 2 }}>
@@ -100,20 +123,41 @@ const ShopProfile = ({ shop }) => {
             Telephone: {shop.telephone}
           </Typography>
 
-          <Typography variant="h2" color="text.secondary" sx={{ marginBottom: 2, fontSize: 30, color: 'black' }}>
+          <Typography variant="h2" color="text.secondary" sx={{ marginBottom: 2, fontSize: 20, color: 'black' }}>
             BOOK APPOINTMENT
           </Typography>
+          
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Box
+        sx={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          position: 'relative',
+        }}
+      >
+        <DemoItem label="DatePicker">
+          <DatePicker
+            sx={{ width: 260 }}
+            slotProps={{
+              field: { clearable: true, onClear: () => setCleared(true) },
+            }}
+            value={calendarDate}  // Set the value prop to reflect the state value
+            onChange={(newValue) => setCalendarDate(newValue)}
+          />
+        </DemoItem>
 
-          <Typography variant="body2" color="textSecondary" sx={{ marginBottom: 2 }}>
-              Select Date:
-              <DatePicker
-                  label="Date"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  renderInput={(params) => <TextField {...params} />}
-                  style={{ marginLeft: '10px' }}
-              />
-          </Typography>
+        {cleared && (
+          <Alert
+            sx={{ position: 'absolute', bottom: 0, right: 0 }}
+            severity="success"
+          >
+            Field cleared!
+          </Alert>
+        )}
+      </Box>
+    </LocalizationProvider>
 
           <Typography variant="body2" color="textSecondary" sx={{ marginBottom: 2 }}>
               Select Time:
@@ -142,9 +186,8 @@ const ShopProfile = ({ shop }) => {
                 <FormControlLabel value="trim&beard" control={<Radio />} label="Trim & Beard" />
               </RadioGroup>
             </FormControl>
-
-
         </CardContent>
+        <Button variant="contained" color='error' onClick={handleSubmit}>Submit</Button>
       </Card>
     </Box>
     <Footer></Footer>
