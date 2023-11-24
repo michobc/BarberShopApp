@@ -43,6 +43,12 @@
   grid-column: 1/2;
 }
 
+
+.nlname{
+  margin-left: 4em;
+}
+
+
 #name{
   position:absolute;
   /* margin-top: 0rem; */
@@ -268,3 +274,62 @@ body {
 
 
 
+/* Your existing styles */
+
+@media screen and (max-width: 900px) {
+  /* Adjust the styles for smaller screens */
+  .allprofile {
+    grid-template-columns: 1fr;
+     /* Change to a single column for small screens */
+    grid-template-rows:1 fr 1 fr 1 fr;
+    margin: 2rem; /* Adjust margin for smaller screens */
+  }
+
+  .personalinfo,
+  .appointments,
+  .exappointments {
+    grid-column: 1/2; /* Make each card span the full width for small screens */
+    margin-bottom: 4rem; /* Add some margin between cards for better spacing on small screens */
+    margin-left:6rem;
+    margin-right:6rem;
+  }
+
+  .personalinfo{
+    grid-row:1/2;
+  }
+
+  .appointments{
+    grid-row: 2/3;
+  }
+
+  .exappointments{
+    grid-row:3/4;
+  }
+
+  .infop {
+    top: 50%; /* Adjust the positioning for smaller screens */
+  }
+
+  /* Add any other styles or adjustments for small screens as needed */
+
+  
+  .infop {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    text-align: center;
+   
+  }
+
+  
+  #pic {
+    display: none; /* Hide the picture on smaller screens */
+  }
+  .personalinfo{
+    position:relative;
+    overflow: hidden;
+  }
+
+
+}

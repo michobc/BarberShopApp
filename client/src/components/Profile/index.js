@@ -80,7 +80,7 @@ const UserProfile = () => {
 
               {/* <div className="list-group"> */}
               <div className="list-group-item item1 nlname">
-                <Typography variant="h6" color="text.secondary" sx={{ textAlign: 'left', fontSize: 30, color: 'black', marginLeft: 10 }}>
+                <Typography variant="h6" color="text.secondary" sx={{ textAlign: 'left', fontSize: 30, color: 'black' }}>
                   <b>{firstName} {lastName}</b>
                 </Typography>
               </div>
