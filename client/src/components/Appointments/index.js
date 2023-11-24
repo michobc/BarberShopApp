@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -6,6 +6,8 @@ import CardActionArea from '@mui/material/CardActionArea';
 import Grid from '@mui/material/Grid';
 import './index.css'
 import BreadCrumbAppointments from '../BreadCrumbs/appointments';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useLocation } from 'react-router-dom';
 
 const appointmentsList = [
   {
@@ -26,6 +28,10 @@ const appointmentsList = [
 ];
 
 const Appointments = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const value = queryParams.get('value');
+  const {user} = useAuthContext();
   useEffect(() => {
     const cards = document.querySelectorAll('.slide-up-card');
     cards.forEach((card) => {
@@ -33,18 +39,28 @@ const Appointments = () => {
     });
   }, []);
 
-  // Sort appointmentsList based on time
-  const sortedAppointments = appointmentsList.sort((a, b) => {
-    // Assuming time is in HH:MM format, compare the times as strings
-    return a.time.localeCompare(b.time);
-  });
+  const [appointmentsList,setApp] = useState([])
+  useEffect(()=>{
+    const handleFetch=async () =>{
+      if(user!=null){
+      const temp = await fetch ('/api/appointment/getownerapp/'+value)
+      const response = await temp.json()
+      if (response){
+        setApp(response)
+      }  
+    }
+    }
+    handleFetch();
+  },[user])
+
+  console.log(appointmentsList)
 
   return (
     <>
       <BreadCrumbAppointments/>
       <section className='AppointmentCards' style={{ margin: '100px' }}>
         <Grid container spacing={3}>
-          {sortedAppointments.map((step, index) => (
+          {appointmentsList.map((step, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card
                 sx={{
@@ -60,7 +76,7 @@ const Appointments = () => {
                 <CardActionArea>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      {step.name}
+                      {step.firstName}{step.lastName}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       Time: {step.time}

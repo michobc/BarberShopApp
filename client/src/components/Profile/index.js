@@ -15,9 +15,6 @@ import { useAuthContext } from '../../hooks/useAuthContext';
 
 const UserProfile = () => {
   const now = new Date();
-  const month = now.getMonth() + 1
-  const day = now.getDay()
-  const year = now.getFullYear()
   const { user } = useAuthContext()
   const [appointments, setState] = useState([]);
   const [isUserSignedIn, setIsUserSignedIn] = useState(0);
@@ -127,7 +124,7 @@ const UserProfile = () => {
               <b>{firstName}'s Appointments</b>
             </Typography>
             {appointments.filter(appointment => {
-              const appointmentDate = new Date(appointment.year, appointment.month -1, appointment.day);
+              const appointmentDate = new Date(appointment.year, appointment.month , appointment.day);
               return appointmentDate >= now;
             })
               .map((appointment, index) => (
@@ -136,7 +133,7 @@ const UserProfile = () => {
                   Shop: {appointment.shopName}
                 </Typography> */}
                   <Typography variant="body2" color="text.secondary" sx={{ marginBottom: 1 }}>
-                    Date: {appointment.day}/ {appointment.month}/ {appointment.year}
+                    Date: {appointment.day}/ {parseInt(appointment.month)+1}/ {appointment.year}
                   </Typography>
                   <Typography variant="body2" color="text.secondary" sx={{ marginBottom: 1 }}>
                     Time: {appointment.time}

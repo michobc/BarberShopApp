@@ -34,9 +34,20 @@ const getMyApp = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+//get Owner app
+const getOwnerApp = async (req, res) => {
+    const {id} = req.params
+    try {
+        const app = await App.find({shopOwner : id});
+        res.status(200).json(app);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 module.exports={
     getOneAppointment,
     createAppointment,
-    getMyApp
+    getMyApp,
+    getOwnerApp
 }

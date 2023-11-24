@@ -24,6 +24,7 @@ import NavBarSign from '../NavBarSign';
 import Navbar from '../Navbar'
 import NavbarBarber from '../NavbarBarber'
 import Footer from '../Footer'
+import { useLocation } from 'react-router-dom';
 
 
 const generateTimeSlots = () => {
@@ -44,12 +45,28 @@ const generateTimeSlots = () => {
   };
 
 const ShopProfile = ({ shop }) => {
+    const location = useLocation()
+    const queryParams = new URLSearchParams(location.search)
+    const shop_id = queryParams.get('shop_id')
     const {user} = useAuthContext();
     const [selectedTime, setSelectedTime] = useState('');
     const [selectedOption, setSelectedOption] = useState('');
     const [cleared, setCleared] = useState(false);
     const [calendarDate, setCalendarDate] = useState(null);
-
+    const [thisshop,setShop] = useState(null)
+    useEffect(()=>{
+      const handleFetch=async () =>{
+        const temp = await fetch ('/api/shop/'+shop_id)
+        const response = await temp.json()
+        if (response){
+          setShop(response)
+        }
+        
+        
+      }
+      handleFetch();
+    },[user])
+    
     //adding to database
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -57,7 +74,7 @@ const ShopProfile = ({ shop }) => {
       const response = await fetch('/api/appointment/create',{
       method:'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ time: selectedTime, user_ID: user.user._id, price: selectedOption, day:calendarDate.$D, month:calendarDate.$M,year:calendarDate.$y })
+      body: JSON.stringify({ time: selectedTime, user_ID: user.user._id, price: selectedOption, day:calendarDate.$D, month:calendarDate.$M,year:calendarDate.$y,shopOwner:thisshop._id ,firstName : user.user.firstName,lastName:user.user.lastName})
 
       });
       if (!response.ok){
@@ -115,7 +132,16 @@ const ShopProfile = ({ shop }) => {
     } else{
       navbarComponent = <NavbarBarber />;
     }
-  
+    const [name,setName] = useState('')
+    const [address,setAddress] = useState('')
+    const [phoneNumber,setPhoneNumber] = useState('')
+    useEffect(() => {
+      if (thisshop != null) {
+        setName(thisshop.name)
+        setAddress(thisshop.address)
+        setPhoneNumber(thisshop.phoneNumber)
+      }
+    }, [thisshop]);
   return (
     <>
     {navbarComponent}
@@ -131,13 +157,13 @@ const ShopProfile = ({ shop }) => {
       <Card sx={{ width: 1000, padding: 10, textAlign: 'center', boxShadow: 20, borderRadius: 2, backgroundColor: 'white' }}>
         <CardContent>
           <Typography variant="h2" color="text.secondary" sx={{ marginBottom: 2, fontSize: 90, color: 'black' }}>
-            {shop.name}
+            {name}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ marginBottom: 2 }}>
-            Address: {shop.address}
+            Address: {address}
           </Typography>
           <Typography variant="body2" color="textSecondary" sx={{ marginBottom: 2 }}>
-            Telephone: {shop.telephone}
+            Telephone: {phoneNumber}
           </Typography>
 
           <Typography variant="h2" color="text.secondary" sx={{ marginBottom: 2, fontSize: 20, color: 'black' }}>

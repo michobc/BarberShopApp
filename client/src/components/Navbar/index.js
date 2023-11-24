@@ -14,7 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useLogout } from '../../hooks/useLogout';
 import { useAuthContext } from '../../hooks/useAuthContext';
-
+import { useLocation } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -140,7 +140,7 @@ export default function PrimarySearchAppBar() {
               results.map((result, id) => {
                 return <div key={id} style={{ padding: '8px', cursor: 'pointer', color:'black' }}
                                                                     // href -> `/shop/${result.id}`
-                onClick={() => {setInput(result.name); window.location.href = "/ShopProfile";}}>{result.name}</div>
+                onClick={() => {setInput(result.name); window.location.href = "/ShopProfile?shop_id="+result._id ;}}>{result.name}</div>
               })
             }
           </div>}

@@ -45,9 +45,9 @@ export default function Shops() {
   },[user])
   
   let navbarComponent;
-  if (isUserSignedIn == 0) {
+  if (isUserSignedIn === 0) {
     navbarComponent = <NavBarSign />;
-  } else if (isUserSignedIn == 1) {
+  } else if (isUserSignedIn === 1) {
     navbarComponent = <Navbar />;
   } else{
     navbarComponent = <NavbarBarber />;
@@ -62,7 +62,7 @@ export default function Shops() {
       {steps.map((step, index) => (
         <Grid item xs={12} sm={6} md={4} key={index}>
           <Card
-            onClick={() => {isUserSignedIn ? window.location.href = '/ShopProfile' : window.location.href = '/SignIn'}}
+            onClick={() => {isUserSignedIn ? window.location.href = '/ShopProfile?shop_id='+step._id : window.location.href = '/SignIn'}}
             sx={{
               maxWidth: 345,
               height: '100%',

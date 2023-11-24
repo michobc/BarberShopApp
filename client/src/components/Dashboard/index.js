@@ -23,7 +23,14 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 import {Button} from '@mui/material';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
+import { useLocation } from 'react-router-dom';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PeopleIcon from '@mui/icons-material/People';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="black" align="center" {...props}>
@@ -87,10 +94,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
+  const location = useLocation();
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('')
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  useEffect(()=>{
+
+    const queryParams = new URLSearchParams(location.search);
+    setValue( queryParams.get('shop_id'));
+  },[])
 
   return (
     <>
@@ -141,7 +155,27 @@ export default function Dashboard() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+          <ListItemButton>
+      <ListItemIcon>
+        <DashboardIcon primary="Dashboard" onClick={() => {window.location.href = '/Dashboard';}}/>
+      </ListItemIcon>
+      <ListItemText primary="Dashboard" onClick={() => {window.location.href = '/Dashboard';}}/>
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <ShoppingCartIcon onClick={() => {window.location.href = "/Appointments?value="+value ;}}/>
+      </ListItemIcon>
+      <ListItemText primary="Appointments" onClick={() => { window.location.href = "/Appointments?value="+value }}/>
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <PeopleIcon onClick={() => {window.location.href = "/CustomersList?value="+value;}} />
+      </ListItemIcon>
+      <ListItemText primary="Customers" onClick={() => {window.location.href = "/CustomersList?value="+value;}}/>
+    </ListItemButton>
+
             <Divider sx={{ my: 1 }} />
             {/* {secondaryListItems} */}
           </List>

@@ -15,20 +15,7 @@ import BreadCrumbMyShops from '../BreadCrumbs/myshops';
 import { useAuthContext } from '../../hooks/useAuthContext';
 
 
-const steps = [
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
-  {
-    name: 'chez faysal',
-    address: 'bsalim streets',
-    telephone: '01/111111',
-    image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
-  },
-];
+
 
 
 export default function MyShops() {
@@ -88,7 +75,7 @@ export default function MyShops() {
               // transform: 'translateY(100%)',
             }}
             className="slide-up-card"
-            onClick={() => {window.location.href = '/Dashboard';}}
+            onClick={() => {window.location.href = '/Dashboard?shop_id='+step._id}}
           >
             <CardActionArea>
             <CardMedia

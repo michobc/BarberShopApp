@@ -10,6 +10,18 @@ const appointmentsSchema = new Schema({
         type:String,
         required: true
     },
+    firstName:{
+        type:String,
+        required: true
+    },
+    lastName:{
+        type:String,
+        required: true
+    },
+    shopOwner:{
+        type:String,
+        required: true
+    },
     price:{
         type:String,
         required: true
