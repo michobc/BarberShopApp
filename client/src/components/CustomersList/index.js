@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import BreadCrumbCustomers from '../BreadCrumbs/customers';
 import { useLocation } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import './index.css';
+
 
 
 
@@ -64,7 +64,7 @@ const CustomersList = () => {
         <Typography variant="h4" gutterBottom sx={{ color: 'white' }}>
           Total Customers: {customer.length}
         </Typography>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           {customer.map((step, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card
@@ -102,11 +102,6 @@ const CustomersList = () => {
           ))}
         </Grid>
         <br></br>
-        <div className='intro-logo21'>
-          <button className="buttonn1" onClick={() => window.location.href = '/Dashboard'}>
-            Return
-          </button>
-        </div>
       </section>
     </>
   );
