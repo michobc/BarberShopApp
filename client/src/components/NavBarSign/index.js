@@ -125,7 +125,7 @@ export default function PrimarySearchAppBar() {
             {
               results.map((result, id) => {
                 return <div key={id} style={{ padding: '8px', cursor: 'pointer', color:'black' }}
-                onClick={() => setInput(result.name)}>{result.name}</div>
+                onClick={() => {setInput(result.name); window.location.href = "/SignIn";}}>{result.name}</div>
               })
             }
           </div>}
@@ -204,6 +204,9 @@ export default function PrimarySearchAppBar() {
         <List>
           <ListItem button onClick={() => window.location.href = '/PickUser'}>
             <ListItemText primary="Sign Up" />
+          </ListItem>
+          <ListItem button onClick={() => window.location.href = '/SignIn'}>
+            <ListItemText primary="Sign In" />
           </ListItem>
           <ListItem button onClick={() => window.location.href = '/Shops'}>
             <ListItemText primary="Shops" />

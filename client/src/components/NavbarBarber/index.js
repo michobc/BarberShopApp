@@ -135,7 +135,7 @@ export default function PrimarySearchAppBar() {
             {
               results.map((result, id) => {
                 return <div key={id} style={{ padding: '8px', cursor: 'pointer', color:'black' }}
-                onClick={() => setInput(result.name)}>{result.name}</div>
+                onClick={() => {setInput(result.name); window.location.href = "/ShopProfile";}}>{result.name}</div>
               })
             }
           </div>}

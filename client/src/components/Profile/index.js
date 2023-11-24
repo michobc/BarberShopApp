@@ -127,7 +127,7 @@ const UserProfile = () => {
               <b>{firstName}'s Appointments</b>
             </Typography>
             {appointments.filter(appointment => {
-              const appointmentDate = new Date(appointment.year, appointment.month - 1, appointment.day);
+              const appointmentDate = new Date(appointment.year, appointment.month -1, appointment.day);
               return appointmentDate >= now;
             })
               .map((appointment, index) => (

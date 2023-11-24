@@ -16,6 +16,7 @@ import { useAuthContext } from '../../hooks/useAuthContext';
 
 export default function Shops() {
   const [steps,setState] = useState([])
+
   useEffect(() => {
     const cards = document.querySelectorAll('.slide-up-card');
     cards.forEach((card) => {
@@ -68,7 +69,7 @@ export default function Shops() {
               display: 'flex',
               flexDirection: 'column',
               transition: 'transform 1s ease',
-              transform: 'translateY(100%)',
+              // transform: 'translateY(100%)',
             }}
             className="slide-up-card"
           >

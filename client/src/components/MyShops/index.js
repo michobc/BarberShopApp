@@ -85,7 +85,7 @@ export default function MyShops() {
               display: 'flex',
               flexDirection: 'column',
               transition: 'transform 1s ease',
-              transform: 'translateY(100%)',
+              // transform: 'translateY(100%)',
             }}
             className="slide-up-card"
             onClick={() => {window.location.href = '/Dashboard';}}
