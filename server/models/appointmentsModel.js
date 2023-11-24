@@ -10,11 +10,19 @@ const appointmentsSchema = new Schema({
         type:String,
         required: true
     },
-    shop_ID:{
+    price:{
         type:String,
         required: true
     },
-    price:{
+    day:{
+        type:String,
+        required: true
+    },
+    month:{
+        type:String,
+        required: true
+    },
+    year:{
         type:String,
         required: true
     }

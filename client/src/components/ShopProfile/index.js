@@ -39,15 +39,38 @@ const generateTimeSlots = () => {
       const time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
       timeSlots.push(time);
     }
-  
+    
     return timeSlots;
   };
 
 const ShopProfile = ({ shop }) => {
+    const {user} = useAuthContext();
     const [selectedTime, setSelectedTime] = useState('');
     const [selectedOption, setSelectedOption] = useState('');
     const [cleared, setCleared] = useState(false);
-    const [calendarDate, setCalendarDate] = useState('');
+    const [calendarDate, setCalendarDate] = useState(null);
+
+    //adding to database
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      if(user && calendarDate){
+      const response = await fetch('/api/appointment/create',{
+      method:'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ time: selectedTime, user_ID: user.user._id, price: selectedOption, day:calendarDate.$D, month:calendarDate.$M,year:calendarDate.$y })
+
+      });
+      if (!response.ok){
+        console.log('error')
+      }
+      if (response.ok){
+        window.location.href='/'
+        console.log('added to database')
+      }
+    }
+      
+    }
+
 
     useEffect(() => {
       if (cleared) {
@@ -68,13 +91,7 @@ const ShopProfile = ({ shop }) => {
         setSelectedOption(event.target.value);
     };
 
-    const handleSubmit = () => {
-      // Perform action upon form submission
-      // For example, send data to backend or perform validation
-      console.log('Submitted!');
-      console.log(calendarDate);
-      // Add your logic here
-    };
+
 
     const [timeSlots,setTimeSlot]=useState([])
     useEffect(()=>{
@@ -82,7 +99,7 @@ const ShopProfile = ({ shop }) => {
     },[])
     
 
-    const {user} = useAuthContext()
+
     const [isUserSignedIn,setIsUserSignedIn] = useState(0);
     useEffect(() => {
       let isAuthenticated = user ? parseInt(user.user.isBarber) : 0;
@@ -181,9 +198,9 @@ const ShopProfile = ({ shop }) => {
                 onChange={handleOptionChange}
                 row
               >
-                <FormControlLabel value="trim" control={<Radio />} label="Trim" />
-                <FormControlLabel value="beard" control={<Radio />} label="Beard" />
-                <FormControlLabel value="trim&beard" control={<Radio />} label="Trim & Beard" />
+                <FormControlLabel value="20$" control={<Radio />} label="Trim" />
+                <FormControlLabel value="10$" control={<Radio />} label="Beard" />
+                <FormControlLabel value="25$" control={<Radio />} label="Trim & Beard" />
               </RadioGroup>
             </FormControl>
         </CardContent>

@@ -2,16 +2,16 @@ const express = require("express")
 const router = express.Router()
 
 const {
-    getOneAppointment, createAppointment
+    getOneAppointment, createAppointment,getMyApp
 }= require('../controllers/appointmentsController')
 
 
 // const requireAuth = require('../middleware/requireAuth')
 // router.use(requireAuth)
-
+router.get('/getmyapp/:id',getMyApp)
 //get one app
 router.get('/:id',getOneAppointment)
 //post appointment
-router.post('/',createAppointment)
+router.post('/create',createAppointment)
 
 module.exports = router
