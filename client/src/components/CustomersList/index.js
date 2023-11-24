@@ -7,33 +7,9 @@ import Grid from '@mui/material/Grid';
 import BreadCrumbCustomers from '../BreadCrumbs/customers';
 import { useLocation } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import './index.css';
 
-const customersList = [
-  {
-    firstName: 'john',
-    lastName: 'doe',
-    address: 'baabdat street',
-    dob: '12/2/2004',
-    phoneNumber: '03/121212',
-    email: 'john.doe@gmail.com'
-  },
-  {
-    firstName: 'john1',
-    lastName: 'doe',
-    address: 'baabdat street',
-    dob: '12/2/2004',
-    phoneNumber: '03/121212',
-    email: 'john.doe@gmail.com'
-  },
-  {
-    firstName: 'john2',
-    lastName: 'doe',
-    address: 'baabdat street',
-    dob: '12/2/2004',
-    phoneNumber: '03/121212',
-    email: 'john.doe@gmail.com'
-  },
-];
+
 
 const CustomersList = () => {
   const {user} = useAuthContext()
@@ -86,7 +62,7 @@ const CustomersList = () => {
       <BreadCrumbCustomers />
       <section className='customersCards' style={{ margin: '100px' }}>
         <Typography variant="h4" gutterBottom sx={{ color: 'white' }}>
-          Total Customers: {customersList.length}
+          Total Customers: {customer.length}
         </Typography>
         <Grid container spacing={3}>
           {customer.map((step, index) => (

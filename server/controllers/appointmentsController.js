@@ -26,7 +26,6 @@ const createAppointment = async (req,res) => {
 //get my App
 const getMyApp = async (req, res) => {
     const { id } = req.params
-    console.log(id);
     try {
         const app = await App.find({user_ID : id});
         res.status(200).json(app);

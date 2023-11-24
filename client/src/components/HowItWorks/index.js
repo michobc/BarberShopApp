@@ -12,8 +12,8 @@ import './index.css';
 
 const steps = [
   {
-    title: 'Step 1: Pick a Barber',
-    description: 'Choose a barber or stylist from our professional team.',
+    title: 'Step 1: Pick a BarberShop',
+    description: 'Choose a barber shop from our shops.',
     image: 'https://bondsbarbershop.co.uk/images/home-hero.jpg',
   },
   {

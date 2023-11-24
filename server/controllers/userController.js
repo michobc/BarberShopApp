@@ -45,7 +45,6 @@ const getUsers = async (req,res) =>{
 
 const getOneUser = async (req,res)=>{
     const { id } = req.params
-    console.log(id)
     if (!mongoose.Types.ObjectId.isValid(id)){//check if id is a valid mongoose id
         return res.status(404).json({error:"no such user"})
     }
